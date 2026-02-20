@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cpsumv404pyko"]
+
+[ext_resource type="Texture2D" uid="uid://bit4thxoj0uxm" path="res://resources/ship-001.png" id="1_l3rv8"]
+[ext_resource type="Script" uid="uid://dj3sy8e7vawxt" path="res://ship.gd" id="1_vj8k3"]
+
+[node name="Ship" type="Node2D" unique_id=1330198999]
+script = ExtResource("1_vj8k3")
+
+[node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
+rotation = 1.5707964
+texture = ExtResource("1_l3rv8")
