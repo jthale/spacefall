@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://xjevilx1npst"]
+
+[ext_resource type="Script" uid="uid://db5i071vgdp20" path="res://player/ship-simple.gd" id="1_u8obm"]
+[ext_resource type="Texture2D" uid="uid://bit4thxoj0uxm" path="res://resources/ship-001.png" id="2_qj7qc"]
+
+[node name="Ship Simple" type="Node2D" unique_id=1330198999]
+script = ExtResource("1_u8obm")
+
+[node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
+rotation = 1.5707964
+texture = ExtResource("2_qj7qc")

@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://8dmo1jnskod6"]
 
-[ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://ship.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://missle_turret.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://3f2xn6nvohw2" path="res://missile.tscn" id="3_1bvp3"]
 
 [node name="Main" type="Node2D" unique_id=1352416815]
 
-[node name="Ship" parent="." unique_id=1330198999 instance=ExtResource("1_ig7tw")]
-position = Vector2(517, 308)
-drag = 1.0
+[node name="Ship" parent="." unique_id=1330198999 groups=["player"] instance=ExtResource("1_ig7tw")]
+position = Vector2(475, 295)
+acceleration = 300.0
+max_speed = 400.0
+rotation_speed = 5.0
+
+[node name="Missle Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
+position = Vector2(148, 486)
+missile_scene = ExtResource("3_1bvp3")

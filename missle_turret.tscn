@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bvmys0ecmgbep"]
+
+[ext_resource type="Script" uid="uid://dbkholci84bcw" path="res://turret.gd" id="1_5bxax"]
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_cpq43"]
+
+[node name="Missle Turret" type="Node2D" unique_id=1152737006]
+script = ExtResource("1_5bxax")
+
+[node name="Square" type="Sprite2D" parent="." unique_id=262687166]
+texture = ExtResource("1_cpq43")
