@@ -13,10 +13,12 @@ acceleration = 300.0
 max_speed = 400.0
 rotation_speed = 5.0
 
-[node name="Missle Turret" parent="." unique_id=1152737006 node_paths=PackedStringArray("target") instance=ExtResource("2_h2yge")]
+[node name="Missle Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
 position = Vector2(148, 486)
 missile_scene = ExtResource("3_1bvp3")
-target = NodePath("../enemy small")
 
-[node name="enemy small" parent="." unique_id=1235862651 instance=ExtResource("4_1bvp3")]
+[node name="enemy small2" parent="." unique_id=648106302 groups=["enemy"] instance=ExtResource("4_1bvp3")]
+position = Vector2(289, 350)
+
+[node name="enemy small" parent="." unique_id=1235862651 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(89, 169)

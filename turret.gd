@@ -3,24 +3,24 @@ extends Node2D
 # Turret properties
 @export var fire_rate: float = 3.0  # Time between shots in seconds
 @export var missile_scene: PackedScene  # Assign missile.tscn in the editor
-@export var target: Node2D  # Target to shoot at (if null, will use player group)
+@export var target_group: String = "enemy"  # Group to search for targets (default: "enemy")
 
-# Reference to the target
+# Reference to the current target
 var current_target: Node2D = null
 
 # Timer for firing
 var time_since_last_shot: float = 0.0
 
 func _ready() -> void:
-	# Use exported target if set, otherwise find player in group
-	if target != null:
-		current_target = target
-	else:
-		current_target = get_tree().get_first_node_in_group("player")
-		if current_target == null:
-			push_warning("Turret: No target assigned and no player found in 'player' group")
+	# Initial target acquisition
+	find_closest_target()
 
 func _process(delta: float) -> void:
+	# Check if current target is still valid (not destroyed)
+	if current_target == null or not is_instance_valid(current_target):
+		find_closest_target()
+
+	# If still no target, stop processing
 	if current_target == null:
 		return
 
@@ -35,6 +35,27 @@ func _process(delta: float) -> void:
 	if time_since_last_shot >= fire_rate:
 		fire_missile()
 		time_since_last_shot = 0.0
+
+func find_closest_target() -> void:
+	# Get all nodes in the target group
+	var targets = get_tree().get_nodes_in_group(target_group)
+
+	if targets.is_empty():
+		current_target = null
+		return
+
+	# Find the closest target
+	var closest_distance: float = INF
+	var closest_target: Node2D = null
+
+	for target in targets:
+		if target is Node2D:
+			var distance = global_position.distance_to(target.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_target = target
+
+	current_target = closest_target
 
 func fire_missile() -> void:
 	if missile_scene == null:
