@@ -3,27 +3,30 @@ extends Node2D
 # Turret properties
 @export var fire_rate: float = 3.0  # Time between shots in seconds
 @export var missile_scene: PackedScene  # Assign missile.tscn in the editor
+@export var target: Node2D  # Target to shoot at (if null, will use player group)
 
-# Reference to the player ship
-var player: Node2D = null
+# Reference to the target
+var current_target: Node2D = null
 
 # Timer for firing
 var time_since_last_shot: float = 0.0
 
 func _ready() -> void:
-	# Find the player ship in the scene
-	# Assuming the player ship is named "Ship" - adjust if different
-	player = get_tree().get_first_node_in_group("player")
-	if player == null:
-		push_warning("Turret: No player found in 'player' group")
+	# Use exported target if set, otherwise find player in group
+	if target != null:
+		current_target = target
+	else:
+		current_target = get_tree().get_first_node_in_group("player")
+		if current_target == null:
+			push_warning("Turret: No target assigned and no player found in 'player' group")
 
 func _process(delta: float) -> void:
-	if player == null:
+	if current_target == null:
 		return
 
-	# Always rotate to face the player
-	var direction_to_player = (player.global_position - global_position).normalized()
-	rotation = direction_to_player.angle()
+	# Always rotate to face the target
+	var direction_to_target = (current_target.global_position - global_position).normalized()
+	rotation = direction_to_target.angle()
 
 	# Update fire timer
 	time_since_last_shot += delta
@@ -38,7 +41,7 @@ func fire_missile() -> void:
 		push_warning("Turret: No missile scene assigned")
 		return
 
-	if player == null:
+	if current_target == null:
 		return
 
 	# Create missile instance
@@ -50,8 +53,8 @@ func fire_missile() -> void:
 	# Set missile position to turret position
 	missile.global_position = global_position
 
-	# Calculate direction to player
-	var direction = (player.global_position - global_position).normalized()
+	# Calculate direction to target
+	var direction = (current_target.global_position - global_position).normalized()
 
 	# Set missile rotation and pass target direction
 	missile.rotation = direction.angle()

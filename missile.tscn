@@ -3,9 +3,16 @@
 [ext_resource type="Script" uid="uid://cw0rnj224ep4c" path="res://missile.gd" id="1_0uoyr"]
 [ext_resource type="Texture2D" uid="uid://ckxufqm2e75rt" path="res://resources/missile.png" id="1_cdnlh"]
 
-[node name="Missile" type="Node2D" unique_id=1106854437]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uoyr"]
+size = Vector2(17, 6)
+
+[node name="Missile" type="Area2D" unique_id=997878242]
 script = ExtResource("1_0uoyr")
 
 [node name="Missile" type="Sprite2D" parent="." unique_id=1955341598]
 rotation = 1.5707964
 texture = ExtResource("1_cdnlh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1845196116]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_0uoyr")
