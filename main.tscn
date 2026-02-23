@@ -17,8 +17,14 @@ rotation_speed = 5.0
 position = Vector2(148, 486)
 missile_scene = ExtResource("3_1bvp3")
 
+[node name="Missle Turret2" parent="." unique_id=759685867 instance=ExtResource("2_h2yge")]
+position = Vector2(492, 379)
+missile_scene = ExtResource("3_1bvp3")
+
 [node name="enemy small2" parent="." unique_id=648106302 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(289, 350)
+speed = 120.0
 
 [node name="enemy small" parent="." unique_id=1235862651 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(89, 169)
+speed = 120.0

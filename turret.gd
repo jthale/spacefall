@@ -4,6 +4,7 @@ extends Node2D
 @export var fire_rate: float = 3.0  # Time between shots in seconds
 @export var missile_scene: PackedScene  # Assign missile.tscn in the editor
 @export var target_group: String = "enemy"  # Group to search for targets (default: "enemy")
+@export var retarget_interval: float = 1.0  # How often to re-evaluate closest target (seconds)
 
 # Reference to the current target
 var current_target: Node2D = null
@@ -11,13 +12,26 @@ var current_target: Node2D = null
 # Timer for firing
 var time_since_last_shot: float = 0.0
 
+# Timer for retargeting
+var time_since_retarget: float = 0.0
+
 func _ready() -> void:
 	# Initial target acquisition
 	find_closest_target()
 
 func _process(delta: float) -> void:
-	# Check if current target is still valid (not destroyed)
-	if current_target == null or not is_instance_valid(current_target):
+	# Quick validity check (very cheap)
+	var needs_retarget = current_target == null or not is_instance_valid(current_target)
+
+	# Periodic retargeting to find closer enemies
+	if not needs_retarget:
+		time_since_retarget += delta
+		if time_since_retarget >= retarget_interval:
+			needs_retarget = true
+			time_since_retarget = 0.0
+
+	# Only do expensive search when necessary
+	if needs_retarget:
 		find_closest_target()
 
 	# If still no target, stop processing

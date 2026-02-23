@@ -5,6 +5,7 @@
 
 [node name="Missle Turret" type="Node2D" unique_id=1152737006]
 script = ExtResource("1_5bxax")
+retarget_interval = 0.1
 
 [node name="Square" type="Sprite2D" parent="." unique_id=262687166]
 texture = ExtResource("1_cpq43")

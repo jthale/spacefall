@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bit4thxoj0uxm" path="res://resources/ship-001.png" id="1_l3rv8"]
 [ext_resource type="Script" uid="uid://dj3sy8e7vawxt" path="res://player/ship.gd" id="1_vj8k3"]
+[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="3_wp5hq"]
+[ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="4_iibov"]
 
 [node name="Ship" type="Node2D" unique_id=1330198999]
 script = ExtResource("1_vj8k3")
@@ -9,3 +11,7 @@ script = ExtResource("1_vj8k3")
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
 rotation = 1.5707964
 texture = ExtResource("1_l3rv8")
+
+[node name="weapon" type="Node2D" parent="." unique_id=1052893720]
+script = ExtResource("3_wp5hq")
+projectile_scene = ExtResource("4_iibov")
