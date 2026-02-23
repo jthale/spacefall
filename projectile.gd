@@ -33,10 +33,15 @@ func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction.normalized()
 
 func _on_area_entered(area: Area2D) -> void:
-
 	# When projectile hits something
+	# First check if the area itself has take_damage
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
+	else:
+		# Otherwise check for a Health child node
+		var health = area.get_node_or_null("Health")
+		if health != null and health.has_method("take_damage"):
+			health.take_damage(damage)
 
 	# Destroy the projectile on impact
 	queue_free()

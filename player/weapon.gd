@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		# Find closest enemy in range
 		var target = find_closest_target_in_range()
 		if target != null:
-			# fire_projectile(target)
+			fire_projectile(target)
 			time_since_last_shot = 0.0
 
 func find_closest_target_in_range() -> Node2D:
