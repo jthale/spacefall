@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cvq53o1gkphy8" path="res://enemy/enemy_small.gd" id="1_85cnw"]
 [ext_resource type="Texture2D" uid="uid://cxrhfffyjdnfd" path="res://enemy/enemy-small.png" id="1_eu2wc"]
+[ext_resource type="Script" uid="uid://c7dvfcioxukbj" path="res://enemy/enemy_weapon.gd" id="3_lk1fv"]
+[ext_resource type="PackedScene" uid="uid://bar3d1h03c0oh" path="res://enemy/enemy-projectile.tscn" id="4_rum8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
 size = Vector2(32, 30)
 
 [node name="enemy small" type="Area2D" unique_id=648106302]
+collision_layer = 2
 script = ExtResource("1_85cnw")
 
 [node name="EnemySmall" type="Sprite2D" parent="." unique_id=1143451009]
@@ -14,3 +17,7 @@ texture = ExtResource("1_eu2wc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493952917]
 shape = SubResource("RectangleShape2D_eu2wc")
+
+[node name="Weapon" type="Node2D" parent="." unique_id=142726322]
+script = ExtResource("3_lk1fv")
+projectile_scene = ExtResource("4_rum8r")

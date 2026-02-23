@@ -5,7 +5,11 @@
 [ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="3_wp5hq"]
 [ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="4_iibov"]
 
-[node name="Ship" type="Node2D" unique_id=1330198999]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iibov"]
+size = Vector2(27, 30)
+
+[node name="Ship" type="Area2D" unique_id=1932107180 groups=["player"]]
+collision_mask = 2
 script = ExtResource("1_vj8k3")
 
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
@@ -15,3 +19,7 @@ texture = ExtResource("1_l3rv8")
 [node name="weapon" type="Node2D" parent="." unique_id=1052893720]
 script = ExtResource("3_wp5hq")
 projectile_scene = ExtResource("4_iibov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1414244668]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_iibov")

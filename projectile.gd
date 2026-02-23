@@ -33,6 +33,7 @@ func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction.normalized()
 
 func _on_area_entered(area: Area2D) -> void:
+
 	# When projectile hits something
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
