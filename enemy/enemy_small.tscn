@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c7dvfcioxukbj" path="res://enemy/enemy_weapon.gd" id="3_lk1fv"]
 [ext_resource type="PackedScene" uid="uid://bar3d1h03c0oh" path="res://enemy/enemy-projectile.tscn" id="4_rum8r"]
 [ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="5_rum8r"]
+[ext_resource type="Script" uid="uid://djqjikj4drn2b" path="res://utilities/targeting.gd" id="6_rum8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
 size = Vector2(32, 30)
@@ -23,6 +24,9 @@ shape = SubResource("RectangleShape2D_eu2wc")
 [node name="Weapon" type="Node2D" parent="." unique_id=142726322]
 script = ExtResource("3_lk1fv")
 projectile_scene = ExtResource("4_rum8r")
+
+[node name="Targeting" type="Node" parent="." unique_id=142726323]
+script = ExtResource("6_rum8r")
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("5_rum8r")]
 position = Vector2(-15, -22)
