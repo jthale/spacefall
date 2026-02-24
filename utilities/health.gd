@@ -1,17 +1,41 @@
-extends Node
+extends Node2D
 
 # Health properties
 @export var max_health: float = 100.0
 @export var current_health: float = 100.0
 @export var destroy_on_death: bool = true  # Whether to queue_free the parent on death
 
+# Health bar visualization
+@export var health_bar_sprite: Sprite2D  # The sprite to scale based on health
+@export var offset: Vector2 = Vector2(-10, -30)  # Offset from parent in world space
+
 # Signals for other systems to respond to
 signal health_changed(new_health: float, max_health: float)
 signal damaged(amount: float)
 signal died()
 
+var initial_scale: Vector2
+
 func _ready() -> void:
 	current_health = max_health
+	top_level = true  # Ignore parent's transform
+
+	# Store the initial scale of the health bar sprite
+	if health_bar_sprite:
+		initial_scale = health_bar_sprite.scale
+		update_health_bar()
+
+func _process(_delta: float) -> void:
+	# Manually follow parent position with offset
+	var parent_node = get_parent()
+	if parent_node is Node2D:
+		global_position = parent_node.global_position + offset
+
+func update_health_bar() -> void:
+	if health_bar_sprite:
+		var health_percent = get_health_percent()
+		# Scale the X axis to show health remaining
+		health_bar_sprite.scale.x = initial_scale.x * health_percent
 
 func take_damage(amount: float) -> void:
 	if current_health <= 0:
@@ -22,6 +46,7 @@ func take_damage(amount: float) -> void:
 
 	damaged.emit(amount)
 	health_changed.emit(current_health, max_health)
+	update_health_bar()
 
 	print(get_parent().name, " hit! Health: ", current_health, "/", max_health)
 
@@ -32,6 +57,7 @@ func heal(amount: float) -> void:
 	current_health += amount
 	current_health = min(current_health, max_health)  # Clamp to max
 	health_changed.emit(current_health, max_health)
+	update_health_bar()
 
 func die() -> void:
 	print(get_parent().name, " destroyed!")

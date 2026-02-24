@@ -7,7 +7,7 @@
 
 [node name="Main" type="Node2D" unique_id=1352416815]
 
-[node name="Ship" parent="." unique_id=1330198999 groups=["player"] instance=ExtResource("1_ig7tw")]
+[node name="Ship" parent="." unique_id=1330198999 instance=ExtResource("1_ig7tw")]
 position = Vector2(870, 388)
 rotation = 3.822271
 acceleration = 300.0

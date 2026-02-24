@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cejf1tjmjhrf5"]
+
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_rmovq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s2a6q"]
+radius = 58.034473
+
+[node name="Space Station" type="Area2D" unique_id=1909291015]
+
+[node name="Square" type="Sprite2D" parent="." unique_id=90139846]
+scale = Vector2(3, 3)
+texture = ExtResource("1_rmovq")
+
+[node name="Square2" type="Sprite2D" parent="." unique_id=2106189526]
+rotation = 0.7853982
+scale = Vector2(2.9999998, 2.9999998)
+texture = ExtResource("1_rmovq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536240458]
+shape = SubResource("CircleShape2D_s2a6q")

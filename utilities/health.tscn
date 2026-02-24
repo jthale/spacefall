@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://jorvetrorx2c"]
+
+[ext_resource type="Texture2D" uid="uid://cm7wd5rk58gbj" path="res://resources/laser-white.png" id="1_jtfa6"]
+[ext_resource type="Script" uid="uid://r0q2gaw5qbjo" path="res://utilities/health.gd" id="1_uh35d"]
+[ext_resource type="Texture2D" uid="uid://bspnq6s0lhaij" path="res://resources/laser-red.png" id="2_uh35d"]
+
+[node name="Health" type="Node2D" unique_id=1483048161 node_paths=PackedStringArray("health_bar_sprite")]
+script = ExtResource("1_uh35d")
+health_bar_sprite = NodePath("Health Bar")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=519962740]
+scale = Vector2(3, 4)
+texture = ExtResource("1_jtfa6")
+centered = false
+
+[node name="Health Bar" type="Sprite2D" parent="." unique_id=1718074706]
+scale = Vector2(3, 4)
+texture = ExtResource("2_uh35d")
+centered = false
