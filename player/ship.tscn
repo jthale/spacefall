@@ -15,6 +15,8 @@ script = ExtResource("1_vj8k3")
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("2_01uhe")]
 position = Vector2(-17, -22)
+max_health = 30.0
+current_health = 30.0
 
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
 rotation = 1.5707964

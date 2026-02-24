@@ -3,11 +3,11 @@ extends Node2D
 # Weapon properties
 @export var fire_rate: float = 1.5  # Time between shots in seconds
 @export var projectile_scene: PackedScene  # Assign enemy_projectile.tscn in the editor
-@export var target_group: String = "player"  # Group to search for targets
-@export var max_range: float = 400.0  # Maximum range to find and shoot at player
+@export var max_range: float = 400.0  # Maximum range to shoot
 
 # Timer for firing
 var time_since_last_shot: float = 0.0
+var current_target: Node2D = null  # Set by parent enemy
 
 func _process(delta: float) -> void:
 	# Update fire timer
@@ -15,27 +15,21 @@ func _process(delta: float) -> void:
 
 	# Fire projectile if enough time has passed
 	if time_since_last_shot >= fire_rate:
-		# Check if player is in range
-		var target = is_player_in_range()
-		
-		if target != null:
-			fire_projectile(target)
+		# Check if current target is in range
+		if is_target_in_range():
+			fire_projectile(current_target)
 			time_since_last_shot = 0.0
-		
 
-func is_player_in_range() -> Node2D:
-	# Get the player (there's only one)
-	var player = get_tree().get_first_node_in_group(target_group)
+func set_target(target: Node2D) -> void:
+	current_target = target
 
-	if player == null or not is_instance_valid(player):
-		return null
+func is_target_in_range() -> bool:
+	if current_target == null or not is_instance_valid(current_target):
+		return false
 
-	# Check if player is within range
-	var distance = global_position.distance_to(player.global_position)
-	if distance <= max_range:
-		return player
-
-	return null
+	# Check if target is within range
+	var distance = global_position.distance_to(current_target.global_position)
+	return distance <= max_range
 
 func fire_projectile(target: Node2D) -> void:
 	if projectile_scene == null:

@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://cejf1tjmjhrf5"]
 
 [ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_rmovq"]
+[ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="2_s2a6q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s2a6q"]
 radius = 58.034473
 
-[node name="Space Station" type="Area2D" unique_id=1909291015]
+[node name="Space Station" type="Area2D" unique_id=1909291015 groups=["space_station"]]
 
 [node name="Square" type="Sprite2D" parent="." unique_id=90139846]
 scale = Vector2(3, 3)
@@ -18,3 +19,6 @@ texture = ExtResource("1_rmovq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536240458]
 shape = SubResource("CircleShape2D_s2a6q")
+
+[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("2_s2a6q")]
+position = Vector2(-15, -71)

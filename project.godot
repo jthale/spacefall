@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 player=""
 enemy=""
+space_station=""
 
 [input]
 

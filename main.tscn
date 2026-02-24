@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://missle_turret.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3f2xn6nvohw2" path="res://missile.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://tknc65v3dtc1" path="res://enemy/enemy_small.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1352416815]
 
@@ -29,3 +30,6 @@ speed = 120.0
 [node name="enemy small" parent="." unique_id=1235862651 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(89, 169)
 speed = 120.0
+
+[node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
+position = Vector2(966, 497)
