@@ -24,11 +24,23 @@ position = Vector2(492, 379)
 missile_scene = ExtResource("3_1bvp3")
 
 [node name="enemy small2" parent="." unique_id=648106302 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(289, 350)
+position = Vector2(230, 233)
+speed = 120.0
+
+[node name="enemy small5" parent="." unique_id=717144185 groups=["enemy"] instance=ExtResource("4_1bvp3")]
+position = Vector2(163, 241)
 speed = 120.0
 
 [node name="enemy small" parent="." unique_id=1235862651 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(89, 169)
+speed = 120.0
+
+[node name="enemy small3" parent="." unique_id=1927710326 groups=["enemy"] instance=ExtResource("4_1bvp3")]
+position = Vector2(109, 307)
+speed = 120.0
+
+[node name="enemy small4" parent="." unique_id=2058658534 groups=["enemy"] instance=ExtResource("4_1bvp3")]
+position = Vector2(209, 157)
 speed = 120.0
 
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]

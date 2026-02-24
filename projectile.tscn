@@ -12,6 +12,8 @@ script = ExtResource("1_qxf0c")
 damage = 5.0
 
 [node name="LaserGreen" type="Sprite2D" parent="." unique_id=2015048088]
+position = Vector2(0, 0.25)
+scale = Vector2(1, 1.5)
 texture = ExtResource("2_qxf0c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1370142556]

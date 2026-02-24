@@ -27,6 +27,7 @@ projectile_scene = ExtResource("4_rum8r")
 
 [node name="Targeting" type="Node" parent="." unique_id=142726323]
 script = ExtResource("6_rum8r")
+aggro_range = 200.0
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("5_rum8r")]
 position = Vector2(-15, -22)
