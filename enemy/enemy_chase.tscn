@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dh20t7gw5542j"]
+
+[ext_resource type="Script" uid="uid://cvq53o1gkphy8" path="res://enemy/enemy.gd" id="1_gm2yf"]
+[ext_resource type="Texture2D" uid="uid://cxrhfffyjdnfd" path="res://enemy/enemy-small.png" id="2_eh1ga"]
+[ext_resource type="Script" uid="uid://c7dvfcioxukbj" path="res://enemy/enemy_weapon.gd" id="3_aca21"]
+[ext_resource type="PackedScene" uid="uid://bar3d1h03c0oh" path="res://enemy/enemy-projectile.tscn" id="4_h2qx0"]
+[ext_resource type="Script" uid="uid://djqjikj4drn2b" path="res://utilities/targeting.gd" id="5_6c8qo"]
+[ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="6_hnt84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
+size = Vector2(27, 18)
+
+[node name="enemy chase" type="Area2D" unique_id=648106302 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_gm2yf")
+min_distance = 80.0
+
+[node name="EnemySmall" type="Sprite2D" parent="." unique_id=1143451009]
+position = Vector2(1.5, 0.5)
+scale = Vector2(0.84375, 0.59375)
+texture = ExtResource("2_eh1ga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493952917]
+position = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_eu2wc")
+
+[node name="Weapon" type="Node2D" parent="." unique_id=142726322]
+script = ExtResource("3_aca21")
+projectile_scene = ExtResource("4_h2qx0")
+
+[node name="Targeting" type="Node" parent="." unique_id=142726323]
+script = ExtResource("5_6c8qo")
+priority = 1
+aggro_range = 200.0
+
+[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("6_hnt84")]
+position = Vector2(-15, -22)
+max_health = 15.0
+current_health = 15.0
