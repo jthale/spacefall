@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvmys0ecmgbep"]
+
+[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="1_5bxax"]
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_cpq43"]
+[ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="2_c5apd"]
+
+[node name="Turret" type="Node2D" unique_id=1152737006]
+script = ExtResource("1_5bxax")
+projectile_scene = ExtResource("2_c5apd")
+
+[node name="Square" type="Sprite2D" parent="." unique_id=262687166]
+texture = ExtResource("1_cpq43")

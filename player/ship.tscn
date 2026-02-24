@@ -25,6 +25,7 @@ texture = ExtResource("1_l3rv8")
 [node name="weapon" type="Node2D" parent="." unique_id=1052893720]
 script = ExtResource("3_wp5hq")
 projectile_scene = ExtResource("4_iibov")
+max_range = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1414244668]
 position = Vector2(-1.5, 0)

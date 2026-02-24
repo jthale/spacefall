@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://8dmo1jnskod6"]
 
 [ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://missle_turret.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://3f2xn6nvohw2" path="res://missile.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://turret.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://tknc65v3dtc1" path="res://enemy/enemy_small.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 
@@ -14,14 +13,6 @@ rotation = 3.822271
 acceleration = 300.0
 max_speed = 400.0
 rotation_speed = 5.0
-
-[node name="Missle Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
-position = Vector2(148, 486)
-missile_scene = ExtResource("3_1bvp3")
-
-[node name="Missle Turret2" parent="." unique_id=759685867 instance=ExtResource("2_h2yge")]
-position = Vector2(492, 379)
-missile_scene = ExtResource("3_1bvp3")
 
 [node name="enemy small2" parent="." unique_id=648106302 groups=["enemy"] instance=ExtResource("4_1bvp3")]
 position = Vector2(230, 233)
@@ -45,3 +36,6 @@ speed = 120.0
 
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
 position = Vector2(966, 497)
+
+[node name="Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
+position = Vector2(443, 283)
