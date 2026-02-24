@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://bar3d1h03c0oh"]
 
 [ext_resource type="Script" uid="uid://bsprya5qxe274" path="res://projectile.gd" id="1_87xx2"]
-[ext_resource type="Texture2D" uid="uid://beuyw1gu2747q" path="res://enemy/projectile-enemy.png" id="2_0vt81"]
+[ext_resource type="Texture2D" uid="uid://bspnq6s0lhaij" path="res://resources/laser-red.png" id="2_0vt81"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a85iw"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gith"]
+size = Vector2(10, 2)
 
 [node name="Enemy Projectile" type="Area2D" unique_id=378347130]
 collision_layer = 8
 script = ExtResource("1_87xx2")
 damage = 2.0
 
-[node name="Projectile" type="Sprite2D" parent="." unique_id=1449285065]
+[node name="LaserRed" type="Sprite2D" parent="." unique_id=414331929]
 texture = ExtResource("2_0vt81")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1370142556]
-shape = SubResource("CircleShape2D_a85iw")
+shape = SubResource("RectangleShape2D_6gith")
