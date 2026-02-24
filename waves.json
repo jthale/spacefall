@@ -1,0 +1,36 @@
+{
+	"waves": [
+		{
+			"enemies": [
+				{
+					"type": "small",
+					"count": 3
+				}
+			]
+		},
+		{
+			"enemies": [
+				{
+					"type": "small",
+					"count": 5
+				}
+			]
+		},
+		{
+			"enemies": [
+				{
+					"type": "small",
+					"count": 8
+				}
+			]
+		},
+		{
+			"enemies": [
+				{
+					"type": "small",
+					"count": 10
+				}
+			]
+		}
+	]
+}

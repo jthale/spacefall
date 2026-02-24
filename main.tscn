@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://turret.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://tknc65v3dtc1" path="res://enemy/enemy_small.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dh20t7gw5542j" path="res://enemy/enemy_chase.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://ghv4wo4ogota" path="res://wave_manager.gd" id="6_7mycd"]
 
 [node name="Main" type="Node2D" unique_id=1352416815]
 
@@ -15,25 +15,8 @@ acceleration = 300.0
 max_speed = 400.0
 rotation_speed = 5.0
 
-[node name="enemy small2" parent="." unique_id=648106302 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(230, 233)
-speed = 120.0
-
-[node name="enemy small5" parent="." unique_id=717144185 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(163, 241)
-speed = 120.0
-
-[node name="enemy small" parent="." unique_id=1235862651 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(89, 169)
-speed = 120.0
-
-[node name="enemy small3" parent="." unique_id=1927710326 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(109, 307)
-speed = 120.0
-
-[node name="enemy small4" parent="." unique_id=2058658534 groups=["enemy"] instance=ExtResource("4_1bvp3")]
-position = Vector2(209, 157)
-speed = 120.0
+[node name="enemy chase" parent="." unique_id=1944863442 instance=ExtResource("5_7mycd")]
+position = Vector2(71, 416)
 
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
 position = Vector2(966, 497)
@@ -41,5 +24,10 @@ position = Vector2(966, 497)
 [node name="Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
 position = Vector2(443, 283)
 
-[node name="enemy chase" parent="." unique_id=1944863442 groups=["enemy"] instance=ExtResource("5_7mycd")]
-position = Vector2(71, 416)
+[node name="Marker2D" type="Marker2D" parent="." unique_id=642710310]
+position = Vector2(60, 50)
+
+[node name="Wave Manager" type="Node" parent="." unique_id=1799188000 node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("6_7mycd")
+waves_json_path = "res://waves.json"
+spawn_point = NodePath("../Marker2D")
