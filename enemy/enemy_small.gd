@@ -7,6 +7,7 @@ extends Area2D
 # Movement properties
 @export var speed: float = 150.0  # Chase speed
 @export var rotation_speed: float = 5.0  # How fast enemy rotates to face player
+@export var min_distance: float = 50.0  # Minimum distance to maintain from player
 
 # Reference to player
 var player: Node2D = null
@@ -26,13 +27,15 @@ func _process(delta: float) -> void:
 
 	# Calculate direction to player
 	var direction_to_player = (player.global_position - global_position).normalized()
+	var distance_to_player = global_position.distance_to(player.global_position)
 
 	# Rotate to face player
 	var target_rotation = direction_to_player.angle()
 	rotation = lerp_angle(rotation, target_rotation, rotation_speed * delta)
 
-	# Move towards player
-	position += direction_to_player * speed * delta
+	# Move towards player only if farther than minimum distance
+	if distance_to_player > min_distance:
+		position += direction_to_player * speed * delta
 
 func take_damage(amount: float) -> void:
 	current_health -= amount

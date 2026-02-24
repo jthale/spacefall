@@ -11,6 +11,7 @@ size = Vector2(32, 30)
 [node name="enemy small" type="Area2D" unique_id=648106302]
 collision_layer = 2
 script = ExtResource("1_85cnw")
+min_distance = 80.0
 
 [node name="EnemySmall" type="Sprite2D" parent="." unique_id=1143451009]
 texture = ExtResource("1_eu2wc")
