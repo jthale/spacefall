@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://turret.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dh20t7gw5542j" path="res://enemy/enemy_chase.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://ghv4wo4ogota" path="res://wave_manager.gd" id="6_7mycd"]
 
@@ -14,9 +13,6 @@ rotation = 3.822271
 acceleration = 300.0
 max_speed = 400.0
 rotation_speed = 5.0
-
-[node name="enemy chase" parent="." unique_id=1944863442 instance=ExtResource("5_7mycd")]
-position = Vector2(71, 416)
 
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
 position = Vector2(966, 497)
@@ -31,3 +27,26 @@ position = Vector2(60, 50)
 script = ExtResource("6_7mycd")
 waves_json_path = "res://waves.json"
 spawn_point = NodePath("../Marker2D")
+
+[node name="Control" type="Control" parent="." unique_id=770032969]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 932.0
+offset_top = 1003.0
+offset_right = 972.0
+offset_bottom = 1043.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Start Wave Button" type="Button" parent="Control" unique_id=1014694955]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start Wave"
+
+[connection signal="pressed" from="Control/Start Wave Button" to="Wave Manager" method="_on_start_wave_button_pressed"]

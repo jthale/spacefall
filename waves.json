@@ -5,6 +5,10 @@
 				{
 					"type": "small",
 					"count": 3
+				},
+				{
+					"type": "chaser",
+					"count": 1
 				}
 			]
 		},
@@ -13,6 +17,10 @@
 				{
 					"type": "small",
 					"count": 5
+				},
+				{
+					"type": "chaser",
+					"count": 2
 				}
 			]
 		},
@@ -21,14 +29,10 @@
 				{
 					"type": "small",
 					"count": 8
-				}
-			]
-		},
-		{
-			"enemies": [
+				},
 				{
-					"type": "small",
-					"count": 10
+					"type": "chaser",
+					"count": 4
 				}
 			]
 		}

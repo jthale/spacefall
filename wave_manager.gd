@@ -1,5 +1,8 @@
 extends Node
 
+# Signals
+signal wave_cleared_signal
+
 # Configuration
 @export_file("*.json") var waves_json_path: String = ""
 @export var spawn_point: Marker2D = null  # Set in inspector
@@ -7,6 +10,7 @@ extends Node
 # Enemy scene mapping (add new enemy types here)
 var enemy_scenes: Dictionary = {
 	"small": preload("res://enemy/enemy_small.tscn"),
+	"chaser": preload("res://enemy/enemy_chase.tscn"),
 }
 
 # State
@@ -25,7 +29,7 @@ func _ready() -> void:
 		push_warning("WaveManager: No spawn point set!")
 
 	# Auto-start first wave (you can change this to manual start)
-	start_next_wave()
+	# start_next_wave()  # Disabled - using manual button start
 
 func load_waves() -> void:
 	var file = FileAccess.open(waves_json_path, FileAccess.READ)
@@ -117,9 +121,12 @@ func _on_enemy_died() -> void:
 func wave_cleared() -> void:
 	print("WaveManager: Wave %d cleared!" % current_wave_index)
 
+	# Emit signal for health restoration and other wave-cleared effects
+	wave_cleared_signal.emit()
+
 	# Optional: Wait before starting next wave
-	await get_tree().create_timer(3.0).timeout
-	start_next_wave()
+	# await get_tree().create_timer(3.0).timeout
+	# start_next_wave()
 
 func wave_all_completed() -> void:
 	print("WaveManager: All waves completed! Victory!")
@@ -135,3 +142,7 @@ func get_current_wave() -> int:
 
 func get_total_waves() -> int:
 	return waves.size()
+
+
+func _on_start_wave_button_pressed() -> void:
+	start_next_wave()

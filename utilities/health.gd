@@ -25,6 +25,14 @@ func _ready() -> void:
 		initial_scale = health_bar_sprite.scale
 		update_health_bar()
 
+	# Connect to wave manager for health restoration between waves
+	var wave_manager = get_node_or_null("/root/Main/Wave Manager")
+	if wave_manager and wave_manager.has_signal("wave_cleared_signal"):
+		wave_manager.wave_cleared_signal.connect(_on_wave_cleared)
+		print(get_parent().name, " connected to WaveManager for health restoration")
+	else:
+		print("Warning: ", get_parent().name, " could not find WaveManager at /root/Main/WaveManager")
+
 func _process(_delta: float) -> void:
 	# Manually follow parent position with offset
 	var parent_node = get_parent()
@@ -71,3 +79,10 @@ func is_alive() -> bool:
 
 func get_health_percent() -> float:
 	return current_health / max_health if max_health > 0 else 0.0
+
+func _on_wave_cleared() -> void:
+	# Restore health to full when wave is cleared
+	current_health = max_health
+	health_changed.emit(current_health, max_health)
+	update_health_bar()
+	print(get_parent().name, " health restored to full!")
