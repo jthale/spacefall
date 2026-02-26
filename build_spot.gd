@@ -2,6 +2,7 @@ extends Area2D
 
 # What can be built at this spot (e.g., turret.tscn)
 @export var buildable_scene: PackedScene
+@export var building_cost: int = 1  # Cost in credits to build
 
 # Building state
 var is_built: bool = false
@@ -85,6 +86,11 @@ func _input(event):
 
 func build():
 	if buildable_scene and not is_built and preview_structure:
+		# Attempt to spend the credits
+		if not Economy.spend(building_cost):
+			print("BuildSpot: Cannot afford building (Cost: %d, Current: %d)" % [building_cost, Economy.get_credits()])
+			return
+
 		# Make the preview fully opaque and enable it
 		preview_structure.modulate = Color(1, 1, 1, 1.0)
 
@@ -99,5 +105,4 @@ func build():
 		preview_structure = null
 		is_built = true
 
-		# Optional: Hide the build spot visual (if you have one)
-		# $Sprite2D.visible = false
+		print("BuildSpot: Building constructed! Remaining credits: %d" % Economy.get_credits())
