@@ -38,10 +38,10 @@ func show_preview():
 			if child is Sprite2D:
 				child.visible = false
 
-		# Instantiate the building as a preview
+		# Instantiate the building as a preview (add to parent, not as child)
 		preview_structure = buildable_scene.instantiate()
-		add_child(preview_structure)
-		preview_structure.position = Vector2.ZERO
+		get_parent().add_child(preview_structure)
+		preview_structure.global_position = global_position
 
 		# Set to 50% alpha for preview effect
 		preview_structure.modulate = Color(1, 1, 1, 0.5)
@@ -106,3 +106,6 @@ func build():
 		is_built = true
 
 		print("BuildSpot: Building constructed! Remaining credits: %d" % Economy.get_credits())
+
+		# Remove the build spot since it's no longer needed
+		queue_free()
