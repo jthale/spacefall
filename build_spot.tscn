@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bw5xbni8iyl0l"]
+
+[ext_resource type="Script" uid="uid://cq0hrjgdq0ha8" path="res://build_spot.gd" id="1_u5s57"]
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="2_itqhb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c38qj"]
+radius = 107.0
+
+[node name="Build Spot" type="Area2D" unique_id=422004792]
+script = ExtResource("1_u5s57")
+
+[node name="Square" type="Sprite2D" parent="." unique_id=575905974]
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("2_itqhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=165887539]
+shape = SubResource("CircleShape2D_c38qj")

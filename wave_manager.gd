@@ -2,6 +2,8 @@ extends Node
 
 # Signals
 signal wave_cleared_signal
+signal wave_started
+signal wave_ended
 
 # Configuration
 @export_file("*.json") var waves_json_path: String = ""
@@ -78,6 +80,7 @@ func spawn_wave(wave: Dictionary) -> void:
 		return
 
 	is_spawning = true
+	wave_started.emit()
 
 	# Spawn all enemies at once
 	if wave.has("enemies"):
@@ -123,6 +126,7 @@ func wave_cleared() -> void:
 
 	# Emit signal for health restoration and other wave-cleared effects
 	wave_cleared_signal.emit()
+	wave_ended.emit()
 
 	# Optional: Wait before starting next wave
 	# await get_tree().create_timer(3.0).timeout

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://turret.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bw5xbni8iyl0l" path="res://build_spot.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://ghv4wo4ogota" path="res://wave_manager.gd" id="6_7mycd"]
 
@@ -12,7 +13,6 @@ position = Vector2(870, 388)
 rotation = 3.822271
 acceleration = 300.0
 max_speed = 400.0
-rotation_speed = 5.0
 
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
 position = Vector2(966, 497)
@@ -27,6 +27,10 @@ position = Vector2(60, 50)
 script = ExtResource("6_7mycd")
 waves_json_path = "res://waves.json"
 spawn_point = NodePath("../Marker2D")
+
+[node name="Build Spot" parent="." unique_id=422004792 instance=ExtResource("5_7mycd")]
+position = Vector2(548, 402)
+buildable_scene = ExtResource("2_h2yge")
 
 [node name="Control" type="Control" parent="." unique_id=770032969]
 layout_mode = 3
