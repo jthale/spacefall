@@ -9,7 +9,7 @@ size = Vector2(10, 2)
 [node name="Enemy Projectile" type="Area2D" unique_id=378347130]
 collision_layer = 8
 script = ExtResource("1_87xx2")
-damage = 2.0
+damage = 1.0
 
 [node name="LaserRed" type="Sprite2D" parent="." unique_id=414331929]
 position = Vector2(0, 0.25)

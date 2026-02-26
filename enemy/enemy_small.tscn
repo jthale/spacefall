@@ -23,10 +23,12 @@ shape = SubResource("RectangleShape2D_eu2wc")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=142726322]
 script = ExtResource("3_lk1fv")
+fire_rate = 0.5
 projectile_scene = ExtResource("4_rum8r")
 
 [node name="Targeting" type="Node" parent="." unique_id=142726323]
 script = ExtResource("6_rum8r")
+target_priorities = Array[String](["building", "player", "space_station"])
 aggro_range = 200.0
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("5_rum8r")]

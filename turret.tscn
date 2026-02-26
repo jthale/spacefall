@@ -3,10 +3,22 @@
 [ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="1_5bxax"]
 [ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_cpq43"]
 [ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="2_c5apd"]
+[ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="4_coqkk"]
 
-[node name="Turret" type="Node2D" unique_id=1152737006]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
+size = Vector2(28, 28)
+
+[node name="Turret" type="Area2D" unique_id=156551692 groups=["building"]]
 script = ExtResource("1_5bxax")
 projectile_scene = ExtResource("2_c5apd")
 
 [node name="Square" type="Sprite2D" parent="." unique_id=262687166]
 texture = ExtResource("1_cpq43")
+
+[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("4_coqkk")]
+position = Vector2(-14, -22)
+max_health = 30.0
+current_health = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204804880]
+shape = SubResource("RectangleShape2D_coqkk")

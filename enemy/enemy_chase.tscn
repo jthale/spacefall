@@ -30,8 +30,7 @@ projectile_scene = ExtResource("4_h2qx0")
 
 [node name="Targeting" type="Node" parent="." unique_id=142726323]
 script = ExtResource("5_6c8qo")
-priority = 1
-aggro_range = 200.0
+target_priorities = Array[String](["player", "building", "space_station"])
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("6_hnt84")]
 position = Vector2(-15, -22)
