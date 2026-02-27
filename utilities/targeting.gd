@@ -39,6 +39,9 @@ func update_target() -> void:
 			for target in targets:
 				if not is_instance_valid(target):
 					continue
+				# Skip destroyed buildings
+				if "is_destroyed" in target and target.is_destroyed:
+					continue
 				var dist = parent_pos.distance_to(target.global_position)
 				if dist < closest_dist:
 					closest = target
