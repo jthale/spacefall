@@ -11,7 +11,15 @@ var preview_structure: Node2D = null
 var player_nearby: bool = false
 var building_enabled: bool = true
 
+# References
+@onready var cost_label: Label = $Cost
+
 func _ready():
+	# Set cost label text and hide it initially
+	if cost_label:
+		cost_label.text = str(building_cost)
+		cost_label.visible = false
+
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 
@@ -24,12 +32,12 @@ func _ready():
 func _on_area_entered(area):
 	if area.is_in_group("player") and not is_built and building_enabled:
 		player_nearby = true
-		show_preview()
+		call_deferred("show_preview")
 
 func _on_area_exited(area):
 	if area.is_in_group("player"):
 		player_nearby = false
-		hide_preview()
+		call_deferred("hide_preview")
 
 func show_preview():
 	if buildable_scene and not preview_structure:
@@ -37,6 +45,10 @@ func show_preview():
 		for child in get_children():
 			if child is Sprite2D:
 				child.visible = false
+
+		# Show cost label
+		if cost_label:
+			cost_label.visible = true
 
 		# Instantiate the building as a preview (add to parent, not as child)
 		preview_structure = buildable_scene.instantiate()
@@ -57,6 +69,10 @@ func hide_preview():
 		preview_structure.queue_free()
 		preview_structure = null
 
+		# Hide cost label
+		if cost_label:
+			cost_label.visible = false
+
 		# Show all sprite children again
 		for child in get_children():
 			if child is Sprite2D:
@@ -68,7 +84,7 @@ func _on_wave_started():
 	visible = false
 	# Hide preview if player is currently near a build spot
 	if preview_structure:
-		hide_preview()
+		call_deferred("hide_preview")
 
 func _on_wave_ended():
 	building_enabled = true
@@ -77,7 +93,7 @@ func _on_wave_ended():
 		visible = true
 	# Show preview again if player is still nearby
 	if player_nearby and not is_built:
-		show_preview()
+		call_deferred("show_preview")
 
 func _input(event):
 	if player_nearby and not is_built and building_enabled:

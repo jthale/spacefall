@@ -15,3 +15,11 @@ texture = ExtResource("2_itqhb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=165887539]
 shape = SubResource("CircleShape2D_c38qj")
+
+[node name="Cost" type="Label" parent="." unique_id=510583349]
+offset_left = -20.0
+offset_top = 9.0
+offset_right = 20.0
+offset_bottom = 32.0
+text = "3"
+horizontal_alignment = 1
