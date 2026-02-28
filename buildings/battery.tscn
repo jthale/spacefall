@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvmys0ecmgbep"]
 
-[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="1_5bxax"]
+[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/laser.gd" id="1_5bxax"]
 [ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="1_cpq43"]
 [ext_resource type="Script" uid="uid://cc4i6kvo7ltyk" path="res://buildings/building.gd" id="1_cv6vn"]
 [ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="2_c5apd"]
@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
 size = Vector2(28, 28)
 
-[node name="Turret" type="Area2D" unique_id=156551692 groups=["building"]]
+[node name="Battery" type="Area2D" unique_id=156551692 groups=["building"]]
 script = ExtResource("1_cv6vn")
 
 [node name="Square" type="Sprite2D" parent="." unique_id=262687166]
@@ -33,6 +33,6 @@ destroy_on_death = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204804880]
 shape = SubResource("RectangleShape2D_coqkk")
 
-[node name="Weapon" type="Node2D" parent="." unique_id=1104473625]
+[node name="Laser" type="Node2D" parent="." unique_id=1104473625]
 script = ExtResource("1_5bxax")
 projectile_scene = ExtResource("2_c5apd")

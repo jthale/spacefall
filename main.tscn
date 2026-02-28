@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8dmo1jnskod6"]
 
 [ext_resource type="PackedScene" uid="uid://cpsumv404pyko" path="res://player/ship.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://buildings/turret.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bvmys0ecmgbep" path="res://buildings/battery.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bw5xbni8iyl0l" path="res://buildings/build_spot.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://ghv4wo4ogota" path="res://wave_manager.gd" id="6_7mycd"]
@@ -77,7 +77,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Start Wave"
 
-[node name="Build Spot3" parent="." unique_id=770663478 instance=ExtResource("5_7mycd")]
+[node name="Habitat Build Spot" parent="." unique_id=770663478 instance=ExtResource("5_7mycd")]
 position = Vector2(981, 369)
 buildable_scene = ExtResource("7_272bh")
 building_cost = 3

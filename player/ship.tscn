@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnm75i88j6c6n" path="res://player/ship-direct.gd" id="1_01uhe"]
 [ext_resource type="Texture2D" uid="uid://bit4thxoj0uxm" path="res://resources/ship-001.png" id="1_l3rv8"]
 [ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="2_01uhe"]
-[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/weapon.gd" id="3_wp5hq"]
+[ext_resource type="Script" uid="uid://xbwo825kenws" path="res://player/laser.gd" id="3_wp5hq"]
 [ext_resource type="PackedScene" uid="uid://k4kxcw8hby7j" path="res://projectile.tscn" id="4_iibov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iibov"]
