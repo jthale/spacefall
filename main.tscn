@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cejf1tjmjhrf5" path="res://space_station.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://ghv4wo4ogota" path="res://wave_manager.gd" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://rylcipxglm4x" path="res://economy_display.gd" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://cf4g6m64mdcph" path="res://buildings/habitat.tscn" id="7_272bh"]
 
 [node name="Main" type="Node2D" unique_id=1352416815]
 
@@ -75,5 +76,10 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Start Wave"
+
+[node name="Build Spot3" parent="." unique_id=770663478 instance=ExtResource("5_7mycd")]
+position = Vector2(981, 369)
+buildable_scene = ExtResource("7_272bh")
+building_cost = 3
 
 [connection signal="pressed" from="Buttom UI/Start Wave Button" to="Wave Manager" method="_on_start_wave_button_pressed"]

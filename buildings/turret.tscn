@@ -15,6 +15,15 @@ script = ExtResource("1_cv6vn")
 [node name="Square" type="Sprite2D" parent="." unique_id=262687166]
 texture = ExtResource("1_cpq43")
 
+[node name="Label" type="Label" parent="Square" unique_id=1084760919]
+offset_left = -19.0
+offset_top = -13.0
+offset_right = 21.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "T"
+horizontal_alignment = 1
+
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("4_coqkk")]
 position = Vector2(-14, -22)
 max_health = 30.0

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cf4g6m64mdcph"]
+
+[ext_resource type="Script" uid="uid://cc4i6kvo7ltyk" path="res://buildings/building.gd" id="1_3k14o"]
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="2_5dfql"]
+[ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="3_t3v0k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
+size = Vector2(28, 28)
+
+[node name="Habitat" type="Area2D" unique_id=156551692 groups=["building"]]
+script = ExtResource("1_3k14o")
+credits_per_wave = 2
+
+[node name="Square" type="Sprite2D" parent="." unique_id=262687166]
+scale = Vector2(1.34375, 1.25)
+texture = ExtResource("2_5dfql")
+
+[node name="Label" type="Label" parent="Square" unique_id=1084760919]
+offset_left = -19.0
+offset_top = -13.0
+offset_right = 21.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "H"
+horizontal_alignment = 1
+
+[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("3_t3v0k")]
+position = Vector2(-14, -22)
+max_health = 30.0
+current_health = 30.0
+destroy_on_death = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204804880]
+shape = SubResource("RectangleShape2D_coqkk")

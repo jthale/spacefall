@@ -7,6 +7,9 @@ var is_destroyed: bool = false
 # Visual settings
 @export var destroyed_tint: Color = Color(0.4, 0.4, 0.4, 0.7)  # Dark gray with transparency
 
+# Economy
+@export var credits_per_wave: int = 0  # Credits awarded if building survives the wave
+
 func _ready():
 	# Connect to health component
 	var health = get_node_or_null("Health")
@@ -26,6 +29,11 @@ func _on_wave_started():
 	survived_wave = true
 
 func _on_wave_ended():
+	# Award credits if building survived the wave
+	if not is_destroyed and credits_per_wave > 0:
+		Economy.add_credits(credits_per_wave)
+		print(name, " survived! Awarded ", credits_per_wave, " credits.")
+
 	# Restore building if it was destroyed during the wave
 	if is_destroyed:
 		restore_building()
