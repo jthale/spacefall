@@ -4,6 +4,7 @@ extends Node
 signal wave_cleared_signal
 signal wave_started
 signal wave_ended
+signal all_waves_completed
 
 # Configuration
 @export_file("*.json") var waves_json_path: String = ""
@@ -135,7 +136,7 @@ func wave_cleared() -> void:
 
 func wave_all_completed() -> void:
 	print("WaveManager: All waves completed! Victory!")
-	# You can emit a signal here or trigger victory screen
+	all_waves_completed.emit()
 
 # Manual control functions
 func start_wave_manually(wave_index: int = 0) -> void:
