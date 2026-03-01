@@ -22,3 +22,6 @@ shape = SubResource("CircleShape2D_s2a6q")
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("2_s2a6q")]
 position = Vector2(-15, -71)
+
+[node name="RespawnPoint" type="Marker2D" parent="." unique_id=1825637942]
+position = Vector2(80, 0)
