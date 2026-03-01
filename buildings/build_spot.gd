@@ -15,6 +15,9 @@ var building_enabled: bool = true
 @onready var cost_label: Label = $Cost
 
 func _ready():
+	# Add to build spots group for closest-detection
+	add_to_group("build_spots")
+
 	# Set cost label text and hide it initially
 	if cost_label:
 		cost_label.text = str(building_cost)
@@ -29,15 +32,25 @@ func _ready():
 		wave_manager.wave_started.connect(_on_wave_started)
 		wave_manager.wave_ended.connect(_on_wave_ended)
 
+func _process(_delta):
+	# Only active build spots that player is near should show preview
+	if player_nearby and not is_built and building_enabled:
+		if is_closest_to_player():
+			if not preview_structure:
+				show_preview()
+		else:
+			if preview_structure:
+				hide_preview()
+
 func _on_area_entered(area):
 	if area.is_in_group("player") and not is_built and building_enabled:
 		player_nearby = true
-		call_deferred("show_preview")
 
 func _on_area_exited(area):
 	if area.is_in_group("player"):
 		player_nearby = false
-		call_deferred("hide_preview")
+		if preview_structure:
+			hide_preview()
 
 func show_preview():
 	if buildable_scene and not preview_structure:
@@ -91,9 +104,6 @@ func _on_wave_ended():
 	# Show the build spot again after wave
 	if not is_built:
 		visible = true
-	# Show preview again if player is still nearby
-	if player_nearby and not is_built:
-		call_deferred("show_preview")
 
 func _input(event):
 	if player_nearby and not is_built and building_enabled:
@@ -125,3 +135,21 @@ func build():
 
 		# Remove the build spot since it's no longer needed
 		queue_free()
+
+func is_closest_to_player() -> bool:
+	var player = get_tree().get_first_node_in_group("player")
+	if not player:
+		return false
+
+	var my_distance = global_position.distance_to(player.global_position)
+
+	# Check all other build spots
+	var build_spots = get_tree().get_nodes_in_group("build_spots")
+	for spot in build_spots:
+		if spot == self or spot.is_built or not spot.player_nearby:
+			continue
+		var their_distance = spot.global_position.distance_to(player.global_position)
+		if their_distance < my_distance:
+			return false  # Another spot is closer
+
+	return true

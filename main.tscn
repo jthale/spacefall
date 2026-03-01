@@ -40,6 +40,16 @@ position = Vector2(586, 234)
 buildable_scene = ExtResource("2_h2yge")
 building_cost = 2
 
+[node name="Build Spot3" parent="." unique_id=1968182973 instance=ExtResource("5_7mycd")]
+position = Vector2(850, 366)
+buildable_scene = ExtResource("2_h2yge")
+building_cost = 2
+
+[node name="Build Spot4" parent="." unique_id=157210736 instance=ExtResource("5_7mycd")]
+position = Vector2(832, 621)
+buildable_scene = ExtResource("2_h2yge")
+building_cost = 2
+
 [node name="Top UI" type="Control" parent="." unique_id=1482655860]
 layout_mode = 3
 anchors_preset = 0
@@ -79,6 +89,21 @@ text = "Start Wave"
 
 [node name="Habitat Build Spot" parent="." unique_id=770663478 instance=ExtResource("5_7mycd")]
 position = Vector2(981, 369)
+buildable_scene = ExtResource("7_272bh")
+building_cost = 3
+
+[node name="Habitat Build Spot2" parent="." unique_id=719807996 instance=ExtResource("5_7mycd")]
+position = Vector2(834, 495)
+buildable_scene = ExtResource("7_272bh")
+building_cost = 3
+
+[node name="Habitat Build Spot3" parent="." unique_id=1271648090 instance=ExtResource("5_7mycd")]
+position = Vector2(960, 650)
+buildable_scene = ExtResource("7_272bh")
+building_cost = 3
+
+[node name="Habitat Build Spot4" parent="." unique_id=1455184331 instance=ExtResource("5_7mycd")]
+position = Vector2(1117, 524)
 buildable_scene = ExtResource("7_272bh")
 building_cost = 3
 

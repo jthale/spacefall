@@ -12,7 +12,7 @@ signal wave_ended
 # Enemy scene mapping (add new enemy types here)
 var enemy_scenes: Dictionary = {
 	"small": preload("res://enemy/enemy_small.tscn"),
-	"chaser": preload("res://enemy/enemy_chase.tscn"),
+	"chaser": preload("res://enemy/enemy_hunter.tscn"),
 }
 
 # State

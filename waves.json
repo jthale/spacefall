@@ -4,11 +4,11 @@
 			"enemies": [
 				{
 					"type": "small",
-					"count": 3
+					"count": 1
 				},
 				{
 					"type": "chaser",
-					"count": 1
+					"count": 4
 				}
 			]
 		},

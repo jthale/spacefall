@@ -26,6 +26,7 @@ shape = SubResource("RectangleShape2D_eu2wc")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=142726322]
 script = ExtResource("3_aca21")
+fire_rate = 0.75
 projectile_scene = ExtResource("4_h2qx0")
 
 [node name="Targeting" type="Node" parent="." unique_id=142726323]
