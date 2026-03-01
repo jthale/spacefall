@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gith"]
 size = Vector2(10, 2)
 
-[node name="Enemy Projectile" type="Area2D" unique_id=378347130]
-collision_layer = 8
+[node name="Enemy Projectile" type="Area2D" unique_id=378347130 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_87xx2")
-damage = 1.0
+damage = 5.0
 
 [node name="LaserRed" type="Sprite2D" parent="." unique_id=414331929]
 position = Vector2(0, 0.25)

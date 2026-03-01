@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgwo2"]
 size = Vector2(10, 2)
 
-[node name="Projectile" type="Area2D" unique_id=378347130]
+[node name="Projectile" type="Area2D" unique_id=378347130 groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_qxf0c")
 damage = 3.0

@@ -32,8 +32,21 @@ func _process(delta: float) -> void:
 func set_direction(new_direction: Vector2) -> void:
 	direction = new_direction.normalized()
 
+func set_damage(new_damage: float) -> void:
+	damage = new_damage
+
 func _on_area_entered(area: Area2D) -> void:
 	# When projectile hits something
+	print("Projectile collided with: ", area.name, " | Projectile groups: ", get_groups(), " | Area groups: ", area.get_groups())
+
+	# Prevent friendly fire - check if projectile and area are in the same group
+	if is_in_group("enemy") and area.is_in_group("enemy"):
+		print("  -> Ignored (friendly fire - both enemy)")
+		return  # Enemy projectile hit an enemy, ignore it
+	if is_in_group("player") and area.is_in_group("player"):
+		print("  -> Ignored (friendly fire - both player)")
+		return  # Player projectile hit player, ignore it
+
 	# First check if the area itself has take_damage
 	if area.has_method("take_damage"):
 		area.take_damage(damage)

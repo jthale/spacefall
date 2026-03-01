@@ -10,6 +10,7 @@
 size = Vector2(28, 28)
 
 [node name="Battery" type="Area2D" unique_id=156551692 groups=["building"]]
+collision_mask = 0
 script = ExtResource("1_cv6vn")
 
 [node name="Square" type="Sprite2D" parent="." unique_id=262687166]

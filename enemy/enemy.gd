@@ -11,17 +11,11 @@ extends Area2D
 
 # References
 var current_target: Node2D = null
-var weapon: Node2D = null
 var targeting_system: Node = null
 
 func _ready() -> void:
 	# Add to enemies group for separation behavior
 	add_to_group("enemies")
-
-	# Find the weapon child node
-	weapon = find_child("Weapon")
-	if weapon == null:
-		push_warning("Enemy: No weapon found")
 
 	# Find the targeting system
 	targeting_system = find_child("Targeting")
@@ -69,6 +63,6 @@ func _on_target_changed(new_target: Node2D) -> void:
 	# Update current target when targeting system changes it
 	current_target = new_target
 
-	# Tell the weapon what to shoot at
-	if weapon and weapon.has_method("set_target"):
-		weapon.set_target(current_target)
+func get_target() -> Node2D:
+	# Weapons call this to get the enemy's current target
+	return current_target

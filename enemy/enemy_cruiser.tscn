@@ -30,8 +30,8 @@ shape = SubResource("RectangleShape2D_eu2wc")
 
 [node name="Targeting" type="Node" parent="." unique_id=142726323]
 script = ExtResource("5_fnik0")
-target_priorities = Array[String](["building", "player", "space_station"])
-aggro_range = 200.0
+target_priorities = Array[String](["building", "space_station"])
+aggro_range = 0.0
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("6_tui3s")]
 position = Vector2(-15, -22)
@@ -39,10 +39,11 @@ max_health = 120.0
 current_health = 120.0
 
 [node name="Weapon" type="Node2D" parent="." unique_id=2116975126]
-position = Vector2(24, 0)
+position = Vector2(28, -25)
 script = ExtResource("3_eojnf")
 fire_rate = 0.5
 projectile_scene = ExtResource("4_0h5ai")
+max_range = 200.0
 
 [node name="Sprite" type="Sprite2D" parent="Weapon" unique_id=566126845]
 modulate = Color(0.26293245, 0.26293245, 0.26293245, 1)
@@ -50,14 +51,25 @@ rotation = 1.5707964
 scale = Vector2(0.41193178, 0.35058928)
 texture = ExtResource("5_uesx0")
 
+[node name="Targeting" type="Node" parent="Weapon" unique_id=1770449708]
+script = ExtResource("5_fnik0")
+target_priorities = Array[String](["building", "player", "space_station"])
+aggro_range = 200.0
+
 [node name="Weapon2" type="Node2D" parent="." unique_id=942999751]
-position = Vector2(-23, 0)
+position = Vector2(29, 25)
 script = ExtResource("3_eojnf")
 fire_rate = 0.5
 projectile_scene = ExtResource("4_0h5ai")
+max_range = 200.0
 
 [node name="Sprite" type="Sprite2D" parent="Weapon2" unique_id=759719273]
 modulate = Color(0.26293245, 0.26293245, 0.26293245, 1)
 rotation = 1.5707964
 scale = Vector2(0.41193178, 0.35058928)
 texture = ExtResource("5_uesx0")
+
+[node name="Targeting" type="Node" parent="Weapon2" unique_id=1327478699]
+script = ExtResource("5_fnik0")
+target_priorities = Array[String](["building", "player", "space_station"])
+aggro_range = 200.0

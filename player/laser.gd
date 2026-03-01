@@ -3,6 +3,7 @@ extends Node2D
 # Weapon properties
 @export var fire_rate: float = 0.5  # Time between shots in seconds
 @export var projectile_scene: PackedScene  # Assign projectile.tscn in the editor
+@export var damage: float = 10.0  # Damage dealt by projectiles
 @export var target_group: String = "enemy"  # Group to search for targets
 @export var max_range: float = 0.0  # Maximum range to shoot (0 = infinite)
 @export var retarget_interval: float = 1.0  # How often to re-evaluate closest target (seconds)
@@ -109,6 +110,10 @@ func fire_projectile() -> void:
 	# Pass target direction to projectile
 	if projectile.has_method("set_direction"):
 		projectile.set_direction(direction)
+
+	# Pass damage to projectile
+	if projectile.has_method("set_damage"):
+		projectile.set_damage(damage)
 
 # Optional: Allow external target setting (for special cases)
 func set_target(target: Node2D) -> void:

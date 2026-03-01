@@ -7,6 +7,7 @@
 radius = 107.0
 
 [node name="Build Spot" type="Area2D" unique_id=422004792]
+collision_layer = 128
 script = ExtResource("1_u5s57")
 
 [node name="Square" type="Sprite2D" parent="." unique_id=575905974]

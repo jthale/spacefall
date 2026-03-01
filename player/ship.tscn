@@ -22,9 +22,9 @@ current_health = 30.0
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
 texture = ExtResource("1_l3rv8")
 
-[node name="weapon" type="Node2D" parent="." unique_id=1052893720]
+[node name="laser" type="Node2D" parent="." unique_id=1052893720]
 script = ExtResource("3_wp5hq")
-fire_rate = 0.25
+fire_rate = 5.0
 projectile_scene = ExtResource("4_iibov")
 max_range = 300.0
 
