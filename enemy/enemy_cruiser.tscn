@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://s83gq1ncu5qa"]
+
+[ext_resource type="Script" uid="uid://cvq53o1gkphy8" path="res://enemy/enemy.gd" id="1_kuymw"]
+[ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="2_kuymw"]
+[ext_resource type="Script" uid="uid://c7dvfcioxukbj" path="res://enemy/enemy_weapon.gd" id="3_eojnf"]
+[ext_resource type="PackedScene" uid="uid://bar3d1h03c0oh" path="res://enemy/enemy-projectile.tscn" id="4_0h5ai"]
+[ext_resource type="Script" uid="uid://djqjikj4drn2b" path="res://utilities/targeting.gd" id="5_fnik0"]
+[ext_resource type="Texture2D" uid="uid://bit4thxoj0uxm" path="res://resources/ship-001.png" id="5_uesx0"]
+[ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="6_tui3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
+size = Vector2(77, 39)
+
+[node name="enemy cruiser" type="Area2D" unique_id=648106302 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_kuymw")
+speed = 100.0
+rotation_speed = 3.5
+min_distance = 200.0
+
+[node name="Square" type="Sprite2D" parent="." unique_id=75356550]
+modulate = Color(0.57579774, 0, 0.18471795, 1)
+scale = Vector2(2.71875, 1.3125)
+texture = ExtResource("2_kuymw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493952917]
+visible = false
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_eu2wc")
+
+[node name="Targeting" type="Node" parent="." unique_id=142726323]
+script = ExtResource("5_fnik0")
+target_priorities = Array[String](["building", "player", "space_station"])
+aggro_range = 200.0
+
+[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("6_tui3s")]
+position = Vector2(-15, -22)
+max_health = 120.0
+current_health = 120.0
+
+[node name="Weapon" type="Node2D" parent="." unique_id=2116975126]
+position = Vector2(24, 0)
+script = ExtResource("3_eojnf")
+fire_rate = 0.5
+projectile_scene = ExtResource("4_0h5ai")
+
+[node name="Sprite" type="Sprite2D" parent="Weapon" unique_id=566126845]
+modulate = Color(0.26293245, 0.26293245, 0.26293245, 1)
+rotation = 1.5707964
+scale = Vector2(0.41193178, 0.35058928)
+texture = ExtResource("5_uesx0")
+
+[node name="Weapon2" type="Node2D" parent="." unique_id=942999751]
+position = Vector2(-23, 0)
+script = ExtResource("3_eojnf")
+fire_rate = 0.5
+projectile_scene = ExtResource("4_0h5ai")
+
+[node name="Sprite" type="Sprite2D" parent="Weapon2" unique_id=759719273]
+modulate = Color(0.26293245, 0.26293245, 0.26293245, 1)
+rotation = 1.5707964
+scale = Vector2(0.41193178, 0.35058928)
+texture = ExtResource("5_uesx0")

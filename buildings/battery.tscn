@@ -21,7 +21,7 @@ offset_top = -13.0
 offset_right = 21.0
 offset_bottom = 10.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "T"
+text = "B"
 horizontal_alignment = 1
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("4_coqkk")]

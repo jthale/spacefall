@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
 size = Vector2(32, 30)
 
-[node name="enemy small" type="Area2D" unique_id=648106302 groups=["enemy"]]
+[node name="enemy corvette" type="Area2D" unique_id=648106302 groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_85cnw")
 min_distance = 80.0

@@ -19,9 +19,6 @@ max_speed = 400.0
 [node name="Space Station" parent="." unique_id=1909291015 instance=ExtResource("5_lquwl")]
 position = Vector2(966, 497)
 
-[node name="Turret" parent="." unique_id=1152737006 instance=ExtResource("2_h2yge")]
-position = Vector2(443, 283)
-
 [node name="Marker2D" type="Marker2D" parent="." unique_id=642710310]
 position = Vector2(60, 50)
 
@@ -31,12 +28,17 @@ waves_json_path = "res://waves.json"
 spawn_point = NodePath("../Marker2D")
 
 [node name="Build Spot" parent="." unique_id=422004792 instance=ExtResource("5_7mycd")]
-position = Vector2(429, 420)
+position = Vector2(463, 434)
 buildable_scene = ExtResource("2_h2yge")
 building_cost = 2
 
 [node name="Build Spot2" parent="." unique_id=674415525 instance=ExtResource("5_7mycd")]
-position = Vector2(586, 234)
+position = Vector2(468, 224)
+buildable_scene = ExtResource("2_h2yge")
+building_cost = 2
+
+[node name="Build Spot5" parent="." unique_id=1417703556 instance=ExtResource("5_7mycd")]
+position = Vector2(665, 210)
 buildable_scene = ExtResource("2_h2yge")
 building_cost = 2
 

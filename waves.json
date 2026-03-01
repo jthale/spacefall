@@ -3,23 +3,19 @@
 		{
 			"enemies": [
 				{
-					"type": "small",
+					"type": "cruiser",
 					"count": 1
-				},
-				{
-					"type": "chaser",
-					"count": 4
 				}
 			]
 		},
 		{
 			"enemies": [
 				{
-					"type": "small",
+					"type": "corvette",
 					"count": 5
 				},
 				{
-					"type": "chaser",
+					"type": "hunter",
 					"count": 2
 				}
 			]
@@ -27,11 +23,11 @@
 		{
 			"enemies": [
 				{
-					"type": "small",
+					"type": "corvette",
 					"count": 8
 				},
 				{
-					"type": "chaser",
+					"type": "hunter",
 					"count": 4
 				}
 			]
