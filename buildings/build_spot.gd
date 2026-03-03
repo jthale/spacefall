@@ -1,12 +1,10 @@
 extends Area2D
 
-# What can be built at this spot (e.g., turret.tscn)
-@export var buildable_scene: PackedScene
+@export var building_node: Node2D  # Reference to the Building node in parent
 @export var building_cost: int = 1  # Cost in credits to build
 
 # Building state
 var is_built: bool = false
-var built_structure: Node2D = null
 var preview_structure: Node2D = null
 var player_nearby: bool = false
 var building_enabled: bool = true
@@ -53,7 +51,16 @@ func _on_area_exited(area):
 			hide_preview()
 
 func show_preview():
-	if buildable_scene and not preview_structure:
+	if not preview_structure:
+		if not building_node:
+			push_error("BuildSpot: building_node must be set in the inspector")
+			return
+
+		# Use the building node as preview
+		preview_structure = building_node
+		preview_structure.visible = true
+		preview_structure.modulate = Color(1, 1, 1, 0.5)
+
 		# Hide all sprite children (build spot visual)
 		for child in get_children():
 			if child is Sprite2D:
@@ -63,23 +70,11 @@ func show_preview():
 		if cost_label:
 			cost_label.visible = true
 
-		# Instantiate the building as a preview (add to parent, not as child)
-		preview_structure = buildable_scene.instantiate()
-		get_parent().add_child(preview_structure)
-		preview_structure.global_position = global_position
-
-		# Set to 50% alpha for preview effect
-		preview_structure.modulate = Color(1, 1, 1, 0.5)
-
-		# Disable any scripts/functionality on the preview
-		if preview_structure.has_method("set_physics_process"):
-			preview_structure.set_physics_process(false)
-		if preview_structure.has_method("set_process"):
-			preview_structure.set_process(false)
-
 func hide_preview():
 	if preview_structure and not is_built:
-		preview_structure.queue_free()
+		# Hide and reset modulate for parent's building
+		preview_structure.visible = false
+		preview_structure.modulate = Color(1, 1, 1, 1.0)
 		preview_structure = null
 
 		# Hide cost label
@@ -111,30 +106,22 @@ func _input(event):
 			build()
 
 func build():
-	if buildable_scene and not is_built and preview_structure:
-		# Attempt to spend the credits
-		if not Economy.spend(building_cost):
-			print("BuildSpot: Cannot afford building (Cost: %d, Current: %d)" % [building_cost, Economy.get_credits()])
-			return
+	if not get_parent() or not get_parent().has_method("show_building"):
+		push_error("BuildSpot: Parent must have show_building() method")
+		return
 
-		# Make the preview fully opaque and enable it
-		preview_structure.modulate = Color(1, 1, 1, 1.0)
+	# Attempt to spend the credits
+	if not Economy.spend(building_cost):
+		print("BuildSpot: Cannot afford building (Cost: %d, Current: %d)" % [building_cost, Economy.get_credits()])
+		return
 
-		# Re-enable functionality
-		if preview_structure.has_method("set_physics_process"):
-			preview_structure.set_physics_process(true)
-		if preview_structure.has_method("set_process"):
-			preview_structure.set_process(true)
+	# Tell parent to show the building and hide build spot
+	get_parent().show_building()
 
-		# Mark as built
-		built_structure = preview_structure
-		preview_structure = null
-		is_built = true
+	# Mark as built
+	is_built = true
 
-		print("BuildSpot: Building constructed! Remaining credits: %d" % Economy.get_credits())
-
-		# Remove the build spot since it's no longer needed
-		queue_free()
+	print("BuildSpot: Building constructed! Remaining credits: %d" % Economy.get_credits())
 
 func is_closest_to_player() -> bool:
 	var player = get_tree().get_first_node_in_group("player")

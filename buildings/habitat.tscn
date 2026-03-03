@@ -2,20 +2,29 @@
 
 [ext_resource type="Script" uid="uid://cc4i6kvo7ltyk" path="res://buildings/building.gd" id="1_3k14o"]
 [ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="2_5dfql"]
+[ext_resource type="PackedScene" uid="uid://bw5xbni8iyl0l" path="res://buildings/build_spot.tscn" id="2_cii76"]
 [ext_resource type="PackedScene" uid="uid://jorvetrorx2c" path="res://utilities/health.tscn" id="3_t3v0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
 size = Vector2(28, 28)
 
-[node name="Habitat" type="Area2D" unique_id=156551692 groups=["building"]]
+[node name="Habitat" type="Node2D" unique_id=524781833 node_paths=PackedStringArray("building_node", "build_spot_node", "health_node") groups=["building"]]
 script = ExtResource("1_3k14o")
+building_node = NodePath("Building")
+build_spot_node = NodePath("Build Spot")
+health_node = NodePath("Building/Health")
 credits_per_wave = 2
 
-[node name="Square" type="Sprite2D" parent="." unique_id=262687166]
+[node name="Build Spot" parent="." unique_id=422004792 node_paths=PackedStringArray("building_node") instance=ExtResource("2_cii76")]
+building_node = NodePath("../Building")
+
+[node name="Building" type="Area2D" parent="." unique_id=817519262]
+
+[node name="Square" type="Sprite2D" parent="Building" unique_id=262687166]
 scale = Vector2(1.34375, 1.25)
 texture = ExtResource("2_5dfql")
 
-[node name="Label" type="Label" parent="Square" unique_id=1084760919]
+[node name="Label" type="Label" parent="Building/Square" unique_id=1084760919]
 offset_left = -19.0
 offset_top = -13.0
 offset_right = 21.0
@@ -23,12 +32,13 @@ offset_bottom = 10.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "H"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Health" parent="." unique_id=1483048161 instance=ExtResource("3_t3v0k")]
+[node name="Health" parent="Building" unique_id=1483048161 instance=ExtResource("3_t3v0k")]
 position = Vector2(-14, -22)
 max_health = 30.0
 current_health = 30.0
 destroy_on_death = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204804880]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building" unique_id=1204804880]
 shape = SubResource("RectangleShape2D_coqkk")

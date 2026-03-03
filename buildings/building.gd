@@ -1,5 +1,10 @@
 extends Node2D
 
+# Node references
+@export var building_node: Node2D  # Reference to the Building node
+@export var build_spot_node: Node2D  # Reference to the Build Spot node
+@export var health_node: Node  # Reference to the Health component
+
 # Building state
 var survived_wave: bool = true
 var is_destroyed: bool = false
@@ -11,10 +16,13 @@ var is_destroyed: bool = false
 @export var credits_per_wave: int = 0  # Credits awarded if building survives the wave
 
 func _ready():
+	# Hide the building node initially (visible in editor for level design)
+	if building_node:
+		building_node.visible = false
+
 	# Connect to health component
-	var health = get_node_or_null("Health")
-	if health and health.has_signal("died"):
-		health.died.connect(_on_building_destroyed)
+	if health_node and health_node.has_signal("died"):
+		health_node.died.connect(_on_building_destroyed)
 
 	# Connect to wave manager to reset survival tracking and handle restoration
 	var wave_manager = get_node_or_null("/root/Main/Wave Manager")
@@ -51,22 +59,35 @@ func _on_building_destroyed():
 	print(name, " destroyed! No longer functional.")
 
 func tint_sprites(tint_color: Color):
-	# Find and tint all Sprite2D children
-	for child in get_children():
+	# Find and tint all Sprite2D children in the Building node
+	if not building_node:
+		return
+
+	for child in building_node.get_children():
 		if child is Sprite2D:
 			child.modulate = tint_color
+		# Also check nested children (like Square/Label)
+		for nested_child in child.get_children():
+			if nested_child is Sprite2D:
+				nested_child.modulate = tint_color
 
 func disable_building():
-	# Disable child nodes by disabling processing on all children
-	for child in get_children():
+	# Disable child nodes by disabling processing on Building node children
+	if not building_node:
+		return
+
+	for child in building_node.get_children():
 		if child.has_method("set_process"):
 			child.set_process(false)
 		if child.has_method("set_physics_process"):
 			child.set_physics_process(false)
 
 func enable_building():
-	# Re-enable child nodes
-	for child in get_children():
+	# Re-enable child nodes in Building node
+	if not building_node:
+		return
+
+	for child in building_node.get_children():
 		if child.has_method("set_process"):
 			child.set_process(true)
 		if child.has_method("set_physics_process"):
@@ -81,13 +102,20 @@ func restore_building():
 	tint_sprites(Color(1, 1, 1, 1))
 
 	# Restore health
-	var health = get_node_or_null("Health")
-	if health and health.has_method("heal"):
-		health.current_health = health.max_health
-		if health.has_method("update_health_bar"):
-			health.update_health_bar()
+	if health_node and health_node.has_method("heal"):
+		health_node.current_health = health_node.max_health
+		if health_node.has_method("update_health_bar"):
+			health_node.update_health_bar()
 
 	# Re-enable functionality
 	enable_building()
 
 	print(name, " restored and functional!")
+
+func show_building():
+	# Called by build spot when building is constructed
+	if building_node:
+		building_node.visible = true
+
+	if build_spot_node:
+		build_spot_node.visible = false
