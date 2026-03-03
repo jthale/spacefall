@@ -116,6 +116,7 @@ func show_building():
 	# Called by build spot when building is constructed
 	if building_node:
 		building_node.visible = true
+		building_node.modulate = Color(1, 1, 1, 1.0)  # Reset to full opacity
 
 	if build_spot_node:
 		build_spot_node.visible = false
