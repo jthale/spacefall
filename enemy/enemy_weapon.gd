@@ -31,8 +31,12 @@ func _process(delta: float) -> void:
 	# Get target from own targeting or parent
 	if not has_own_targeting:
 		# Pull target from parent enemy if we don't have our own targeting
-		if get_parent() and get_parent().has_method("get_target"):
-			current_target = get_parent().get_target()
+		var parent = get_parent()
+		if parent and is_instance_valid(parent) and parent.has_method("get_target"):
+			var target = parent.get_target()
+			# Only assign if the target is valid (null or a non-freed instance)
+			if target == null or is_instance_valid(target):
+				current_target = target
 
 	# Rotate weapon to face target if we have independent targeting
 	if has_own_targeting and current_target != null and is_instance_valid(current_target):
@@ -49,7 +53,9 @@ func _process(delta: float) -> void:
 
 func _on_target_changed(new_target: Node2D) -> void:
 	# Called by child Targeting node when target changes
-	current_target = new_target
+	# Only assign if the target is valid (null or a non-freed instance)
+	if new_target == null or is_instance_valid(new_target):
+		current_target = new_target
 
 func is_target_in_range() -> bool:
 	if current_target == null or not is_instance_valid(current_target):

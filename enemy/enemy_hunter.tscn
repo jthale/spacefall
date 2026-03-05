@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eu2wc"]
 size = Vector2(27, 18)
 
-[node name="enemy chase" type="Area2D" unique_id=648106302 groups=["enemy"]]
+[node name="enemy hunter" type="Area2D" unique_id=648106302 groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_gm2yf")
 min_distance = 80.0

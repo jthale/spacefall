@@ -5,9 +5,13 @@ extends Node2D
 @export var build_spot_node: Node2D  # Reference to the Build Spot node
 @export var health_node: Node  # Reference to the Health component
 
+# Building configuration
+@export var starts_built: bool = false  # Set to true for pre-built buildings
+
 # Building state
 var survived_wave: bool = true
 var is_destroyed: bool = false
+var is_built: bool = false  # Track whether building has been constructed
 
 # Visual settings
 @export var destroyed_tint: Color = Color(0.4, 0.4, 0.4, 0.7)  # Dark gray with transparency
@@ -16,9 +20,29 @@ var is_destroyed: bool = false
 @export var credits_per_wave: int = 0  # Credits awarded if building survives the wave
 
 func _ready():
-	# Hide the building node initially (visible in editor for level design)
-	if building_node:
-		building_node.visible = false
+	# Set initial built state
+	is_built = starts_built
+
+	# Disable unbuilt buildings completely
+	if not is_built:
+		# Hide the building node initially (visible in editor for level design)
+		if building_node:
+			building_node.visible = false
+
+		# Disable building functionality (weapons, etc.)
+		disable_building()
+
+		# Disable collision so it can't be hit
+		if building_node is Area2D or building_node is CollisionObject2D:
+			building_node.set_deferred("monitorable", false)
+			building_node.set_deferred("monitoring", false)
+
+		# Remove from targeting group so enemies don't target it
+		remove_from_group("building")
+	else:
+		# Building is already built, hide the build spot
+		if build_spot_node:
+			build_spot_node.visible = false
 
 	# Connect to health component
 	if health_node and health_node.has_signal("died"):
@@ -114,9 +138,24 @@ func restore_building():
 
 func show_building():
 	# Called by build spot when building is constructed
+	is_built = true
+
 	if building_node:
 		building_node.visible = true
 		building_node.modulate = Color(1, 1, 1, 1.0)  # Reset to full opacity
 
+		# Enable collision so it can be hit
+		if building_node is Area2D or building_node is CollisionObject2D:
+			building_node.set_deferred("monitorable", true)
+			building_node.set_deferred("monitoring", true)
+
+	# Enable building functionality (weapons, etc.)
+	enable_building()
+
+	# Add to targeting group so enemies can target it
+	add_to_group("building")
+
 	if build_spot_node:
 		build_spot_node.visible = false
+
+	print(name, " built and now active!")

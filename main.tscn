@@ -109,20 +109,35 @@ text = "DEFEAT!"
 
 [node name="Level Manager" type="Node2D" parent="." unique_id=1056126667 node_paths=PackedStringArray("respawn_point")]
 script = ExtResource("8_5vw27")
-respawn_point = NodePath("../Level/Respawn Point")
+respawn_point = NodePath("../Level/Space Station/Respawn Point")
 
 [node name="Level" type="Node2D" parent="." unique_id=167702243]
 
 [node name="Space Station" parent="Level" unique_id=1909291015 instance=ExtResource("5_lquwl")]
-position = Vector2(966, 497)
+position = Vector2(975, 565)
 
-[node name="Respawn Point" type="Node2D" parent="Level" unique_id=1224420378]
-position = Vector2(1010, 583)
+[node name="Respawn Point" type="Node2D" parent="Level/Space Station" unique_id=1224420378]
+position = Vector2(44, 86)
 
-[node name="Habitat" parent="." unique_id=524781833 instance=ExtResource("7_272bh")]
-position = Vector2(953, 351)
+[node name="Battery" parent="Level" unique_id=1448118518 instance=ExtResource("2_h2yge")]
+position = Vector2(824, 493)
 
-[node name="Battery" parent="." unique_id=1448118518 instance=ExtResource("2_h2yge")]
-position = Vector2(715, 342)
+[node name="Battery2" parent="Level" unique_id=875540699 instance=ExtResource("2_h2yge")]
+position = Vector2(439, 442)
+
+[node name="Battery3" parent="Level" unique_id=1424488632 instance=ExtResource("2_h2yge")]
+position = Vector2(603, 238)
+
+[node name="Habitat" parent="Level" unique_id=524781833 instance=ExtResource("7_272bh")]
+position = Vector2(1026, 431)
+
+[node name="Habitat2" parent="Level" unique_id=1662076996 instance=ExtResource("7_272bh")]
+position = Vector2(893, 683)
+
+[node name="Habitat3" parent="Level" unique_id=717832866 instance=ExtResource("7_272bh")]
+position = Vector2(1096, 697)
+
+[node name="Habitat4" parent="Level" unique_id=1169918679 instance=ExtResource("7_272bh")]
+position = Vector2(1177, 523)
 
 [connection signal="pressed" from="Buttom UI/Start Wave Button" to="Wave Manager" method="_on_start_wave_button_pressed"]
