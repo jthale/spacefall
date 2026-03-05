@@ -26,15 +26,10 @@ func _ready():
 	# Disable unbuilt buildings completely
 	if not is_built:
 		# Hide the building node initially (visible in editor for level design)
-		building_node.process_mode = Node.PROCESS_MODE_DISABLED
 		building_node.visible = false
 		
-		#if building_node:
-		#	building_node.visible = false
-
-		# Disable building functionality (weapons, etc.)
-		# disable_building()
-
+		disable_building()
+		
 		# Disable collision so it can't be hit
 		#if building_node is Area2D or building_node is CollisionObject2D:
 		#	building_node.set_deferred("monitorable", false)
@@ -63,6 +58,9 @@ func _on_wave_started():
 	# Reset survival tracking at start of each wave
 	# Hide build spot if not built
 	survived_wave = true
+	
+	if not is_built:
+		disable_build_spot()
 
 func _on_wave_ended():
 	# Award credits if building survived the wave
@@ -73,6 +71,9 @@ func _on_wave_ended():
 	# Restore building if it was destroyed during the wave
 	if is_destroyed:
 		restore_building()
+	
+	if not is_built:
+		enable_build_spot()
 
 func _on_building_destroyed():
 	survived_wave = false
@@ -102,10 +103,13 @@ func tint_sprites(tint_color: Color):
 func disable_build_spot():
 	build_spot_node.process_mode = Node.PROCESS_MODE_DISABLED
 	build_spot_node.visible = false
+	
+func enable_build_spot():
+	build_spot_node.process_mode = Node.PROCESS_MODE_INHERIT
+	build_spot_node.visible = true
 
 func disable_building():
 	# Disable child nodes by disabling processing on Building node children
-	#building_node.process_mode = Node.PROCESS_MODE_DISABLED
 	building_node.remove_from_group("building")
 	
 	for child in building_node.get_children():
@@ -116,14 +120,13 @@ func disable_building():
 
 func enable_building():
 	# Re-enable child nodes in Building node
-	building_node.process_mode = Node.PROCESS_MODE_INHERIT
 	building_node.add_to_group("building")
 	
-	#for child in building_node.get_children():
-		#if child.has_method("set_process"):
-			#child.set_process(true)
-		#if child.has_method("set_physics_process"):
-			#child.set_physics_process(true)
+	for child in building_node.get_children():
+		if child.has_method("set_process"):
+			child.set_process(true)
+		if child.has_method("set_physics_process"):
+			child.set_physics_process(true)
 
 func restore_building():
 	# Called when building is respawned/repaired

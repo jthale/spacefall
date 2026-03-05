@@ -32,6 +32,7 @@ player=""
 enemy=""
 space_station=""
 building=""
+build_spots=""
 
 [input]
 

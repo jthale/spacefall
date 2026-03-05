@@ -13,9 +13,6 @@ var building_enabled: bool = true
 @onready var cost_label: Label = $Cost
 
 func _ready():
-	# Add to build spots group for closest-detection
-	add_to_group("build_spots")
-
 	# Set cost label text and hide it initially
 	if cost_label:
 		cost_label.text = str(building_cost)
@@ -24,11 +21,6 @@ func _ready():
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 
-	# Connect to wave manager signals
-	# var wave_manager = get_node_or_null("/root/Main/Wave Manager")
-	# if wave_manager:
-	#	wave_manager.wave_started.connect(_on_wave_started)
-	#	wave_manager.wave_ended.connect(_on_wave_ended)
 
 func _process(_delta):
 	# Only active build spots that player is near should show preview
@@ -87,18 +79,20 @@ func hide_preview():
 				child.visible = true
 
 func _on_wave_started():
-	building_enabled = false
-	# Hide the entire build spot during wave
-	visible = false
-	# Hide preview if player is currently near a build spot
-	if preview_structure:
-		call_deferred("hide_preview")
+	#building_enabled = false
+	## Hide the entire build spot during wave
+	#visible = false
+	## Hide preview if player is currently near a build spot
+	#if preview_structure:
+		#call_deferred("hide_preview")
+	return
 
 func _on_wave_ended():
-	building_enabled = true
-	# Show the build spot again after wave
-	if not is_built:
-		visible = true
+	#building_enabled = true
+	## Show the build spot again after wave
+	#if not is_built:
+		#visible = true
+	return
 
 func _input(event):
 	if player_nearby and not is_built and building_enabled:
