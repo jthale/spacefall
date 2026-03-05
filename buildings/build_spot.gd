@@ -25,10 +25,10 @@ func _ready():
 	area_exited.connect(_on_area_exited)
 
 	# Connect to wave manager signals
-	var wave_manager = get_node_or_null("/root/Main/Wave Manager")
-	if wave_manager:
-		wave_manager.wave_started.connect(_on_wave_started)
-		wave_manager.wave_ended.connect(_on_wave_ended)
+	# var wave_manager = get_node_or_null("/root/Main/Wave Manager")
+	# if wave_manager:
+	#	wave_manager.wave_started.connect(_on_wave_started)
+	#	wave_manager.wave_ended.connect(_on_wave_ended)
 
 func _process(_delta):
 	# Only active build spots that player is near should show preview

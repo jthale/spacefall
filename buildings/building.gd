@@ -26,23 +26,26 @@ func _ready():
 	# Disable unbuilt buildings completely
 	if not is_built:
 		# Hide the building node initially (visible in editor for level design)
-		if building_node:
-			building_node.visible = false
+		building_node.process_mode = Node.PROCESS_MODE_DISABLED
+		building_node.visible = false
+		
+		#if building_node:
+		#	building_node.visible = false
 
 		# Disable building functionality (weapons, etc.)
-		disable_building()
+		# disable_building()
 
 		# Disable collision so it can't be hit
-		if building_node is Area2D or building_node is CollisionObject2D:
-			building_node.set_deferred("monitorable", false)
-			building_node.set_deferred("monitoring", false)
+		#if building_node is Area2D or building_node is CollisionObject2D:
+		#	building_node.set_deferred("monitorable", false)
+		#	building_node.set_deferred("monitoring", false)
 
 		# Remove from targeting group so enemies don't target it
-		remove_from_group("building")
+		# remove_from_group("building")
 	else:
 		# Building is already built, hide the build spot
-		if build_spot_node:
-			build_spot_node.visible = false
+		disable_build_spot()
+		enable_building()
 
 	# Connect to health component
 	if health_node and health_node.has_signal("died"):
@@ -58,6 +61,7 @@ func _ready():
 
 func _on_wave_started():
 	# Reset survival tracking at start of each wave
+	# Hide build spot if not built
 	survived_wave = true
 
 func _on_wave_ended():
@@ -95,11 +99,15 @@ func tint_sprites(tint_color: Color):
 			if nested_child is Sprite2D:
 				nested_child.modulate = tint_color
 
+func disable_build_spot():
+	build_spot_node.process_mode = Node.PROCESS_MODE_DISABLED
+	build_spot_node.visible = false
+
 func disable_building():
 	# Disable child nodes by disabling processing on Building node children
-	if not building_node:
-		return
-
+	#building_node.process_mode = Node.PROCESS_MODE_DISABLED
+	building_node.remove_from_group("building")
+	
 	for child in building_node.get_children():
 		if child.has_method("set_process"):
 			child.set_process(false)
@@ -108,14 +116,14 @@ func disable_building():
 
 func enable_building():
 	# Re-enable child nodes in Building node
-	if not building_node:
-		return
-
-	for child in building_node.get_children():
-		if child.has_method("set_process"):
-			child.set_process(true)
-		if child.has_method("set_physics_process"):
-			child.set_physics_process(true)
+	building_node.process_mode = Node.PROCESS_MODE_INHERIT
+	building_node.add_to_group("building")
+	
+	#for child in building_node.get_children():
+		#if child.has_method("set_process"):
+			#child.set_process(true)
+		#if child.has_method("set_physics_process"):
+			#child.set_physics_process(true)
 
 func restore_building():
 	# Called when building is respawned/repaired
@@ -126,10 +134,9 @@ func restore_building():
 	tint_sprites(Color(1, 1, 1, 1))
 
 	# Restore health
-	if health_node and health_node.has_method("heal"):
-		health_node.current_health = health_node.max_health
-		if health_node.has_method("update_health_bar"):
-			health_node.update_health_bar()
+	health_node.current_health = health_node.max_health
+	if health_node.has_method("update_health_bar"):
+		health_node.update_health_bar()
 
 	# Re-enable functionality
 	enable_building()
@@ -154,8 +161,6 @@ func show_building():
 
 	# Add to targeting group so enemies can target it
 	add_to_group("building")
-
-	if build_spot_node:
-		build_spot_node.visible = false
+	build_spot_node.visible = false
 
 	print(name, " built and now active!")

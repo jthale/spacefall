@@ -18,23 +18,22 @@ func _ready() -> void:
 	targeting_system = find_child("Targeting")
 	if targeting_system != null:
 		has_own_targeting = true
-		# Connect to targeting system signal
-		if targeting_system.has_signal("target_changed"):
-			targeting_system.target_changed.connect(_on_target_changed)
-		else:
-			push_warning("Weapon: Targeting node found but has no target_changed signal")
 
 func _process(delta: float) -> void:
 	# Update fire timer
 	time_since_last_shot += delta
 
 	# Get target from own targeting or parent
-	if not has_own_targeting:
+	if has_own_targeting:
+		# Poll our own targeting system directly
+		if targeting_system and targeting_system.has_method("get_current_target"):
+			current_target = targeting_system.get_current_target()
+	else:
 		# Pull target from parent enemy if we don't have our own targeting
 		var parent = get_parent()
 		if parent and is_instance_valid(parent) and parent.has_method("get_target"):
 			var target = parent.get_target()
-			# Only assign if the target is valid (null or a non-freed instance)
+			# Only assign if valid
 			if target == null or is_instance_valid(target):
 				current_target = target
 
@@ -50,12 +49,6 @@ func _process(delta: float) -> void:
 		if is_target_in_range():
 			fire_projectile(current_target)
 			time_since_last_shot = 0.0
-
-func _on_target_changed(new_target: Node2D) -> void:
-	# Called by child Targeting node when target changes
-	# Only assign if the target is valid (null or a non-freed instance)
-	if new_target == null or is_instance_valid(new_target):
-		current_target = new_target
 
 func is_target_in_range() -> bool:
 	if current_target == null or not is_instance_valid(current_target):

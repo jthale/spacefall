@@ -4,15 +4,17 @@ extends Node
 # Searches groups in order and targets closest entity in the highest priority group found
 @export var target_priorities: Array[String] = ["buildings", "space_station"]
 @export var aggro_range: float = -1.0  # Optional: switch to "player" if within range (-1 = disabled)
-
-# Signals
-signal target_changed(new_target: Node2D)
+@export var target_update_interval: float = 0.2  # Update targeting every 0.2 seconds
 
 # Current target reference
 var current_target: Node2D = null
+var time_since_last_update: float = 0.0
 
-func _process(_delta: float) -> void:
-	update_target()
+func _process(delta: float) -> void:
+	time_since_last_update += delta
+	if time_since_last_update >= target_update_interval:
+		update_target()
+		time_since_last_update = 0.0
 
 func update_target() -> void:
 	var new_target: Node2D = null
@@ -51,10 +53,8 @@ func update_target() -> void:
 				new_target = closest
 				break  # Found target in highest priority group, stop searching
 
-	# Emit signal if target changed
-	if new_target != current_target:
-		current_target = new_target
-		target_changed.emit(current_target)
+	# Update current target (no signal needed - callers will poll this)
+	current_target = new_target
 
 func get_current_target() -> Node2D:
 	return current_target

@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
 size = Vector2(28, 28)
 
-[node name="Battery" type="Node2D" unique_id=1448118518 node_paths=PackedStringArray("building_node", "build_spot_node", "health_node") groups=["building"]]
+[node name="Battery" type="Node2D" unique_id=1448118518 node_paths=PackedStringArray("building_node", "build_spot_node", "health_node")]
 script = ExtResource("1_cv6vn")
 building_node = NodePath("Building")
 build_spot_node = NodePath("Build Spot")

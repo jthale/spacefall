@@ -21,11 +21,12 @@ func _ready() -> void:
 	targeting_system = find_child("Targeting")
 	if targeting_system == null:
 		push_warning("Enemy: No targeting system found")
-	else:
-		# Connect to targeting system signal
-		targeting_system.target_changed.connect(_on_target_changed)
 
 func _process(delta: float) -> void:
+	# Get current target from targeting system
+	if targeting_system and targeting_system.has_method("get_current_target"):
+		current_target = targeting_system.get_current_target()
+
 	# If no valid target, stop processing
 	if current_target == null or not is_instance_valid(current_target):
 		return
@@ -58,10 +59,6 @@ func _process(delta: float) -> void:
 	# Move towards target only if farther than minimum distance
 	if distance_to_target > min_distance:
 		position += direction_to_target * speed * delta
-
-func _on_target_changed(new_target: Node2D) -> void:
-	# Update current target when targeting system changes it
-	current_target = new_target
 
 func get_target() -> Node2D:
 	# Weapons call this to get the enemy's current target

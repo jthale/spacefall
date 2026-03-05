@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://hc56tqf0ethh" path="res://resources/square.png" id="2_itqhb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c38qj"]
-radius = 107.0
+radius = 68.007355
 
 [node name="Build Spot" type="Area2D" unique_id=422004792]
 collision_layer = 128
