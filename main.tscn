@@ -12,7 +12,7 @@
 [node name="Main" type="Node2D" unique_id=1352416815]
 
 [node name="Ship" parent="." unique_id=1330198999 instance=ExtResource("1_ig7tw")]
-position = Vector2(719.99994, 322)
+position = Vector2(927.99994, 329.99994)
 rotation = 3.822271
 acceleration = 300.0
 max_speed = 400.0
@@ -121,16 +121,23 @@ position = Vector2(44, 86)
 
 [node name="Habitat" parent="Level" unique_id=524781833 instance=ExtResource("7_272bh")]
 position = Vector2(1099, 335)
-starts_built = true
 
 [node name="Habitat3" parent="Level" unique_id=717832866 instance=ExtResource("7_272bh")]
 position = Vector2(1096, 697)
+
+[node name="Habitat5" parent="Level" unique_id=1688772210 instance=ExtResource("7_272bh")]
+position = Vector2(921, 746)
 
 [node name="Habitat4" parent="Level" unique_id=1169918679 instance=ExtResource("7_272bh")]
 position = Vector2(1177, 523)
 
 [node name="Battery" parent="." unique_id=1448118518 instance=ExtResource("2_h2yge")]
-position = Vector2(595, 362)
-starts_built = true
+position = Vector2(600, 478)
+
+[node name="Battery2" parent="." unique_id=1545634404 instance=ExtResource("2_h2yge")]
+position = Vector2(702, 322)
+
+[node name="Battery3" parent="." unique_id=1998200147 instance=ExtResource("2_h2yge")]
+position = Vector2(797, 490)
 
 [connection signal="pressed" from="Buttom UI/Start Wave Button" to="Wave Manager" method="_on_start_wave_button_pressed"]

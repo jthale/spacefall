@@ -13,9 +13,11 @@ script = ExtResource("1_3k14o")
 building_node = NodePath("Habitat")
 build_spot_node = NodePath("Build Spot")
 health_node = NodePath("Habitat/Health")
+credits_per_wave = 2
 
 [node name="Build Spot" parent="." unique_id=422004792 node_paths=PackedStringArray("building_node") instance=ExtResource("2_cii76")]
 building_node = NodePath("../Habitat")
+building_cost = 2
 
 [node name="Habitat" type="Area2D" parent="." unique_id=817519262]
 

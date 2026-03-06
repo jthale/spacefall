@@ -12,7 +12,7 @@
 			"enemies": [
 				{
 					"type": "corvette",
-					"count": 3
+					"count": 1
 				},
 				{
 					"type": "hunter",
@@ -36,7 +36,7 @@
 				},
 				{
 					"type": "hunter",
-					"count": 12
+					"count": 8
 				}
 			]
 		}

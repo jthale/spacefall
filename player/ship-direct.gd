@@ -8,6 +8,48 @@ extends Area2D
 # Current velocity
 var velocity: Vector2 = Vector2.ZERO
 
+# Reference to health component
+@onready var health = $Health
+
+func _ready() -> void:
+	# Connect to health died signal
+	if health and health.has_signal("died"):
+		health.died.connect(_on_ship_died)
+
+func _on_ship_died() -> void:
+	# Disable ship processing
+	set_physics_process(false)
+
+	# Disable collision
+	collision_layer = 0
+	collision_mask = 0
+
+	# Remove from player group so enemies stop targeting
+	remove_from_group("player")
+
+	# Disable all child nodes (laser, etc.)
+	for child in get_children():
+		if child != health:  # Keep health active for respawn logic
+			child.process_mode = Node.PROCESS_MODE_DISABLED
+
+func enable_ship() -> void:
+	# Re-enable ship processing
+	set_physics_process(true)
+
+	# Re-enable collision (restore default values)
+	collision_layer = 1
+	collision_mask = 2
+
+	# Add back to player group so enemies can target
+	add_to_group("player")
+
+	# Re-enable all child nodes
+	for child in get_children():
+		child.process_mode = Node.PROCESS_MODE_INHERIT
+
+	# Reset velocity
+	velocity = Vector2.ZERO
+
 func _physics_process(delta: float) -> void:
 	# Get input direction from keyboard/gamepad
 	var input_direction: Vector2 = Input.get_vector(

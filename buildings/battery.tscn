@@ -18,6 +18,7 @@ health_node = NodePath("Building/Health")
 
 [node name="Build Spot" parent="." unique_id=422004792 node_paths=PackedStringArray("building_node") instance=ExtResource("2_qad2i")]
 building_node = NodePath("../Building")
+building_cost = 3
 
 [node name="Building" type="Area2D" parent="." unique_id=82399140]
 

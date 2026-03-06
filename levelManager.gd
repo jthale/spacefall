@@ -113,6 +113,10 @@ func respawn_player() -> void:
 		player_health.current_health = player_health.max_health
 		player_health.update_health_bar()
 
+	# Re-enable ship functionality
+	if player.has_method("enable_ship"):
+		player.enable_ship()
+
 	is_respawning = false
 	print("LevelManager: Player respawned at ", respawn_point.global_position)
 
