@@ -72,7 +72,7 @@ func find_closest_target() -> void:
 	current_target = closest_target
 
 func is_target_in_range() -> bool:
-	if current_target == null or not is_instance_valid(current_target):
+	if current_target == null:
 		return false
 
 	# If max_range is 0, always in range
