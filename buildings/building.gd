@@ -64,7 +64,7 @@ func _on_wave_started():
 
 func _on_wave_ended():
 	# Award credits if building survived the wave
-	if not is_destroyed and credits_per_wave > 0:
+	if is_built and not is_destroyed and credits_per_wave > 0:
 		Economy.add_credits(credits_per_wave)
 		print(name, " survived! Awarded ", credits_per_wave, " credits.")
 
