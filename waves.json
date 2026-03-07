@@ -4,7 +4,7 @@
 			"enemies": [
 				{
 					"type": "corvette",
-					"count": 3
+					"count": 2
 				}
 			]
 		},
@@ -12,11 +12,11 @@
 			"enemies": [
 				{
 					"type": "corvette",
-					"count": 1
+					"count": 2
 				},
 				{
 					"type": "hunter",
-					"count": 5
+					"count": 3
 				}
 			]
 		},
@@ -25,6 +25,10 @@
 				{
 					"type": "cruiser",
 					"count": 1
+				},
+				{
+					"type": "hunter",
+					"count": 3
 				}
 			]
 		},
@@ -37,6 +41,34 @@
 				{
 					"type": "hunter",
 					"count": 8
+				}
+			]
+		},
+		{
+			"enemies": [
+				{
+					"type": "corvette",
+					"count": 5
+				},
+				{
+					"type": "hunter",
+					"count": 8
+				}
+			]
+		},
+		{
+			"enemies": [
+				{
+					"type": "corvette",
+					"count": 3
+				},
+				{
+					"type": "hunter",
+					"count": 10
+				},
+				{
+					"type": "cruiser",
+					"count": 1
 				}
 			]
 		}
