@@ -16,8 +16,8 @@ drag = 0.98
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("2_01uhe")]
 position = Vector2(-17, -22)
-max_health = 30.0
-current_health = 30.0
+max_health = 50.0
+current_health = 50.0
 destroy_on_death = false
 
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]
@@ -25,8 +25,8 @@ texture = ExtResource("1_l3rv8")
 
 [node name="laser" type="Node2D" parent="." unique_id=1052893720]
 script = ExtResource("3_wp5hq")
-fire_rate = 0.25
 projectile_scene = ExtResource("4_iibov")
+damage = 5.0
 max_range = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1414244668]
