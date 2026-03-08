@@ -37,8 +37,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Health" parent="Habitat" unique_id=1483048161 instance=ExtResource("3_t3v0k")]
 position = Vector2(-14, -22)
-max_health = 30.0
-current_health = 30.0
+max_health = 50.0
+current_health = 50.0
 destroy_on_death = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Habitat" unique_id=1204804880]

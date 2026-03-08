@@ -4,13 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spacefall** is a 2D game built with Godot 4.6 using the Mobile rendering method. The project uses Jolt Physics for 3D physics calculations.
+**Spacefall** is a 2D game built with Godot 4.6 using the Mobile rendering method.
 
 ## Project Configuration
 
 - **Engine**: Godot 4.6
 - **Rendering**: Mobile renderer
-- **Physics**: Jolt Physics engine (3D)
 - **Platform**: Mobile-focused (config features: "4.6", "Mobile")
 - **Windows Rendering**: D3D12 driver
 
