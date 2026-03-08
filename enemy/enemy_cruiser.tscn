@@ -35,8 +35,8 @@ aggro_range = 0.0
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("6_tui3s")]
 position = Vector2(-15, -22)
-max_health = 120.0
-current_health = 120.0
+max_health = 200.0
+current_health = 200.0
 
 [node name="Weapon" type="Node2D" parent="." unique_id=2116975126]
 position = Vector2(28, -25)

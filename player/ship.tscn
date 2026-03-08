@@ -16,8 +16,6 @@ drag = 0.98
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("2_01uhe")]
 position = Vector2(-17, -22)
-max_health = 50.0
-current_health = 50.0
 destroy_on_death = false
 
 [node name="Ship001" type="Sprite2D" parent="." unique_id=412011287]

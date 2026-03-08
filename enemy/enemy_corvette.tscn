@@ -33,5 +33,5 @@ aggro_range = 200.0
 
 [node name="Health" parent="." unique_id=1483048161 instance=ExtResource("5_rum8r")]
 position = Vector2(-15, -22)
-max_health = 30.0
-current_health = 30.0
+max_health = 50.0
+current_health = 50.0
