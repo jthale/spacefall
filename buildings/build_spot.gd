@@ -78,22 +78,6 @@ func hide_preview():
 			if child is Sprite2D:
 				child.visible = true
 
-func _on_wave_started():
-	#building_enabled = false
-	## Hide the entire build spot during wave
-	#visible = false
-	## Hide preview if player is currently near a build spot
-	#if preview_structure:
-		#call_deferred("hide_preview")
-	return
-
-func _on_wave_ended():
-	#building_enabled = true
-	## Show the build spot again after wave
-	#if not is_built:
-		#visible = true
-	return
-
 func _input(event):
 	if player_nearby and not is_built and building_enabled:
 		if event.is_action_pressed("build"):

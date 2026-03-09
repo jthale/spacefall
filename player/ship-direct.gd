@@ -59,7 +59,10 @@ func _physics_process(delta: float) -> void:
 		"ui_down"    # Down
 	)
 
-	# If there's input, instantly rotate to face that direction and accelerate
+	# Get strafe input (Q and E keys)
+	var strafe_input: float = Input.get_axis("strafe_left", "strafe_right")
+
+	# If there's directional input, instantly rotate to face that direction and accelerate
 	if input_direction.length() > 0.0:
 		# Instantly rotate ship to face input direction
 		# Add PI/2 to account for ship sprite pointing up
@@ -67,6 +70,14 @@ func _physics_process(delta: float) -> void:
 
 		# Apply acceleration in the input direction
 		velocity += input_direction.normalized() * acceleration * delta
+
+	# Handle strafing (perpendicular movement without rotation)
+	if strafe_input != 0.0:
+		# Calculate perpendicular direction based on ship's current rotation
+		var strafe_direction: Vector2 = Vector2.RIGHT.rotated(rotation)
+
+		# Apply strafe acceleration
+		velocity += strafe_direction * strafe_input * acceleration * delta
 
 	# Apply drag to simulate space friction
 	velocity *= drag
